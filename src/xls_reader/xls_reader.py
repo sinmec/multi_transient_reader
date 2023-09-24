@@ -54,3 +54,15 @@ def get_edge_names(dataframe):
         edges_names.append(item[first_open_parentheses + 1:second_open_parentheses - 1].strip())
     single_edges_names = set(edges_names)
     return sorted(single_edges_names)
+
+def get_variable_units(dataframe):
+    units_names = ['s']
+    column_names = dataframe.keys()
+    for item in column_names[1:]:
+        first_open_brackets = item.find("[")
+        second_open_brackets = item.find("[", first_open_brackets + 1)
+        first_close_brackets = item.find("]")
+        second_close_brackets = item.find("]", first_close_brackets + 1)
+        units_names.append(item[second_open_brackets+1:second_close_brackets].strip())
+    single_units_names = set(units_names)
+    return sorted(single_units_names)
