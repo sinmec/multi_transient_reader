@@ -8,10 +8,10 @@ from src.xls_reader.xls_reader import get_variables_names, get_number_of_variabl
     get_probe_location, get_number_of_edges, get_edge_names, get_variable_units
 
 
-@pytest.fixture
+@pytest.fixture(scope = 'session')
 def alfasim_file_1():
     main_folder = Path(r"C:\Users\Gustavo\OneDrive\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC")
-    xls_file = Path(main_folder, "multi_transient_reader", "transient_example.xls")
+    xls_file = Path(main_folder, "multi_transient_reader", "transient_example_short.xlsx")
 
     return {'dataframe': pd.read_excel(xls_file, decimal=","),
             'variable_names': sorted(['Time', 'Absolute Pressure', 'Holdup']),

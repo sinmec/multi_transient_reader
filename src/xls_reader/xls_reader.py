@@ -66,3 +66,5 @@ def get_variable_units(dataframe):
         units_names.append(item[second_open_brackets+1:second_close_brackets].strip())
     single_units_names = set(units_names)
     return sorted(single_units_names)
+
+def create_dictionary(dataframe):
