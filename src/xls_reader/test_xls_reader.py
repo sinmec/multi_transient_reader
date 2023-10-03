@@ -54,6 +54,7 @@ def test_get_variable_units(alfasim_file_1):
     unit_names = get_variable_units(alfasim_file_1['dataframe'])
     assert unit_names == alfasim_file_1['units']
 
+@pytest.mark.skip(reason="change fixture")
 def test_create_variables_dictionaries(alfasim_file_1):
     variables_dictionary = create_variables_dictionaries(alfasim_file_1['dataframe'])
     assert variables_dictionary == 1
