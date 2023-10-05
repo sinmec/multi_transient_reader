@@ -5,7 +5,7 @@ import pytest
 import numpy as np
 
 from src.xls_reader.xls_reader import get_variables_names, get_number_of_variables, get_number_of_probes, \
-    get_probe_position, get_number_of_edges, get_edge_names, get_variable_units, create_variables_dictionaries, \
+    get_probe_position, get_number_of_edges, get_edge_names, get_variable_units, \
     create_results_dictionary
 
 
