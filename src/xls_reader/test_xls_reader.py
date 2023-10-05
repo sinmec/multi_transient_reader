@@ -5,7 +5,8 @@ import pytest
 import numpy as np
 
 from src.xls_reader.xls_reader import get_variables_names, get_number_of_variables, get_number_of_probes, \
-    get_probe_position, get_number_of_edges, get_edge_names, get_variable_units, create_variables_dictionaries
+    get_probe_position, get_number_of_edges, get_edge_names, get_variable_units, create_variables_dictionaries, \
+    create_results_dictionary
 
 
 @pytest.fixture(scope='session')
@@ -54,7 +55,17 @@ def test_get_variable_units(alfasim_file_1):
     unit_names = get_variable_units(alfasim_file_1['dataframe'])
     assert unit_names == alfasim_file_1['units']
 
+
 @pytest.mark.skip(reason="change fixture")
 def test_create_variables_dictionaries(alfasim_file_1):
     variables_dictionary = create_variables_dictionaries(alfasim_file_1['dataframe'])
     assert variables_dictionary == 1
+
+
+def test_check_time_column():
+    assert "Time"
+
+def test_create_results_dictionary(alfasim_file_1):
+    results_dictionary = create_results_dictionary(alfasim_file_1['dataframe'])
+    assert results_dictionary == 1
+
