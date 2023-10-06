@@ -2,17 +2,17 @@ from pathlib import Path
 
 import pandas as pd
 import pytest
-import numpy as np
 
-from src.xls_reader.xls_reader import get_variables_names, get_number_of_variables, get_number_of_probes, \
+from src.xls_reader.xls_reader import get_variable_names, get_number_of_variables, get_number_of_probes, \
     get_probe_position, get_number_of_edges, get_edge_names, get_variable_units, \
     create_results_dictionary
 
 
 @pytest.fixture(scope='session')
 def alfasim_file_1():
-    main_folder = Path(r"C:\Users\Gustavo\OneDrive\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC")
-    xls_file = Path(main_folder, "multi_transient_reader", "transient_example_short.xlsx")
+    # main_folder = Path(r"C:\Users\Gustavo\OneDrive\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC\multi_transient_reader")
+    main_folder = Path(r"C:\Users\rafaelfc\Downloads")
+    xls_file = Path(main_folder, "transient_example_short.xlsx")
 
     return {'dataframe': pd.read_excel(xls_file, decimal=","),
             'variable_names': sorted(['Time', 'Absolute Pressure', 'Holdup']),
@@ -21,14 +21,14 @@ def alfasim_file_1():
             'units': sorted(['s', 'bar', 'm3/m3'])}
 
 
-def test_get_variables_names(alfasim_file_1):
-    variable_names = get_variables_names(alfasim_file_1['dataframe'])
+def test_get_variable_names(alfasim_file_1):
+    variable_names = get_variable_names(alfasim_file_1['dataframe'])
     assert variable_names == alfasim_file_1['variable_names']
 
 
 def test_get_number_of_variables(alfasim_file_1):
-    number_single_variables_names = get_number_of_variables(alfasim_file_1['dataframe'])
-    assert number_single_variables_names == len(alfasim_file_1['variable_names'])
+    number_single_variable_names = get_number_of_variables(alfasim_file_1['dataframe'])
+    assert number_single_variable_names == len(alfasim_file_1['variable_names'])
 
 
 def test_get_number_of_probes(alfasim_file_1):
@@ -59,8 +59,8 @@ def test_get_variable_units(alfasim_file_1):
 def test_check_time_column():
     assert "Time"
 
+
 @pytest.mark.skip(reason="change fixture")
 def test_create_results_dictionary(alfasim_file_1):
     results_dictionary = create_results_dictionary(alfasim_file_1['dataframe'])
     assert False
-

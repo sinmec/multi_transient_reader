@@ -1,24 +1,24 @@
 import numpy as np
 
 
-def get_variables_names(dataframe):
-    variables_names = ['Time']
+def get_variable_names(dataframe):
+    variable_names = ['Time']
     column_names = dataframe.keys()
     for item in column_names[1:]:
         first_open_parentheses = item.find("(")
-        variables_names.append(item[:first_open_parentheses - 1].strip())
+        variable_names.append(item[:first_open_parentheses - 1].strip())
 
-    return sorted(set(variables_names))
+    return sorted(set(variable_names))
 
 
 def get_number_of_variables(dataframe):
-    variables_names = ['Time']
+    variable_names = ['Time']
     column_names = dataframe.keys()
     for item in column_names[1:]:
         first_open_parentheses = item.find("(")
-        variables_names.append(item[:first_open_parentheses - 1].strip())
+        variable_names.append(item[:first_open_parentheses - 1].strip())
 
-    return len(set(variables_names))
+    return len(set(variable_names))
 
 
 def get_number_of_probes(dataframe):
@@ -80,13 +80,15 @@ def get_variable_units(dataframe):
     return sorted(set(units_names))
 
 
+# TODO: When we implement a function to read the .xls(x) files
+#      , check if the the first column is 'Time[s]'
 def check_time_column(dataframe):
-    return dataframe.keys()[0]
+    assert dataframe.keys()[0] == 'Time [s]'
 
 
 def create_results_dictionary(dataframe):
     probe_positions = get_probe_position(dataframe)
-    variables_names = get_variables_names(dataframe)
+    variable_names = get_variable_names(dataframe)
     edge_names = get_edge_names(dataframe)
     units = get_variable_units(dataframe)
 
@@ -97,14 +99,14 @@ def create_results_dictionary(dataframe):
         for probe_position in probe_positions:
             if f'{probe_position:g}' not in results_dict[edge_name]:
                 results_dict[edge_name][f'{probe_position:g}'] = {'position': probe_position}
-            for variables_name in variables_names:
+            for variable_name in variable_names:
                 for unit in units:
                     probe_position_string = f'{probe_position:g}'.replace('.', ',')
-                    column_name = f'{variables_name} ({edge_name} ({probe_position_string} [m])) [{unit}]'
+                    column_name = f'{variable_name} ({edge_name} ({probe_position_string} [m])) [{unit}]'
                     if column_name in dataframe.keys():
-                        results_dict[edge_name][f'{probe_position:g}'][variables_name] = {'unit': unit,
-                                                                                          'value': np.array([],
-                                                                                                            dtype=float)
-                                                                                          }
+                        results_dict[edge_name][f'{probe_position:g}'][variable_name] = {'unit': unit,
+                                                                                         'value': np.array([],
+                                                                                                           dtype=float)
+                                                                                         }
 
     return results_dict
