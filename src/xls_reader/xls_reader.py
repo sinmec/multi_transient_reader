@@ -110,3 +110,7 @@ def create_results_dictionary(dataframe):
                                                                                          }
 
     return results_dict
+
+
+
+def create_variables_dicitionaries_from_column_read(dataframe):

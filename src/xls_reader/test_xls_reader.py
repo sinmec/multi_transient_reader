@@ -125,7 +125,13 @@ def test_create_variables_dictionaries(alfasim_file_single_edge_homogeneous_data
 
     for edge_name in results:
         for probe_name in results[edge_name]:
-            assert results[edge_name][probe_name]['position'] == pytest.approx(test_results[edge_name][probe_name]['position'], abs=1.0e-3)
+            assert results[edge_name][probe_name]['position'] == pytest.approx(
+                test_results[edge_name][probe_name]['position'], abs=1.0e-3)
             for variable_name in results[edge_name][probe_name]:
                 if variable_name is not 'position':
-                    assert results[edge_name][probe_name][variable_name]['unit'] == test_results[edge_name][probe_name][variable_name]['unit']
+                    assert results[edge_name][probe_name][variable_name]['unit'] == \
+                           test_results[edge_name][probe_name][variable_name]['unit']
+
+
+def test_create_variables_dicitionaries_from_column_read():
+    assert False
