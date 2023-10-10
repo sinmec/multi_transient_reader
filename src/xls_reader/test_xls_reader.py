@@ -6,7 +6,8 @@ import pytest
 import numpy as np
 
 from src.xls_reader.xls_reader import get_variable_names, get_number_of_variables, get_number_of_probes, \
-    get_probe_position, get_number_of_edges, get_edge_names, get_variable_units, create_results_dictionary
+    get_probe_position, get_number_of_edges, get_edge_names, get_variable_units, create_results_dictionary, \
+    create_variables_dicitionaries_from_column_read
 
 
 @pytest.fixture(scope='session')
@@ -15,7 +16,8 @@ def alfasim_file_single_edge_homogeneous_data():
     This fixture contains a dataset with a single edge and multiple probe positions.
     The probe positions are homogeneous, i.e., have the exact variables at the same points.
     '''
-    xls_file = Path(os.getcwd(), "transient_example_short.xlsx")
+    main_folder = Path(r"C:\Users\Gustavo\OneDrive\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC\multi_transient_reader")
+    xls_file = Path(main_folder, "transient_example_short.xlsx")
 
     return {'dataframe': pd.read_excel(xls_file, decimal=","),
             'variable_names': sorted(['Time', 'Absolute Pressure', 'Holdup']),
@@ -133,5 +135,7 @@ def test_create_variables_dictionaries(alfasim_file_single_edge_homogeneous_data
                            test_results[edge_name][probe_name][variable_name]['unit']
 
 
-def test_create_variables_dicitionaries_from_column_read():
-    assert False
+def test_create_variables_dicitionaries_from_column_read(alfasim_file_single_edge_homogeneous_data):
+    results = create_variables_dicitionaries_from_column_read(alfasim_file_single_edge_homogeneous_data['dataframe'])
+
+    assert results == (alfasim_file_single_edge_homogeneous_data['results'])
