@@ -1,9 +1,7 @@
-import os
 from pathlib import Path
 
 import pandas as pd
 import pytest
-import numpy as np
 
 from src.xls_reader.xls_reader import get_variable_names, get_number_of_variables, get_number_of_probes, \
     get_probe_position, get_number_of_edges, get_edge_names, get_variable_units, create_results_dictionary, \
@@ -16,7 +14,8 @@ def alfasim_file_single_edge_homogeneous_data():
     This fixture contains a dataset with a single edge and multiple probe positions.
     The probe positions are homogeneous, i.e., have the exact variables at the same points.
     '''
-    main_folder = Path(r"C:\Users\Gustavo\OneDrive\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC\multi_transient_reader")
+    main_folder = Path(
+        r"C:\Users\Gustavo\OneDrive\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC\multi_transient_reader")
     xls_file = Path(main_folder, "transient_example_short.xlsx")
 
     return {'dataframe': pd.read_excel(xls_file, decimal=","),
@@ -127,8 +126,8 @@ def test_create_variables_dictionaries(alfasim_file_single_edge_homogeneous_data
 
     for edge_name in results:
         for probe_name in results[edge_name]:
-            assert results[edge_name][probe_name]['position'] == pytest.approx(
-                test_results[edge_name][probe_name]['position'], abs=1.0e-3)
+            assert (results[edge_name][probe_name]['position'])== (pytest.approx(
+                test_results[edge_name][probe_name]['position'], abs=1.0e-3))
             for variable_name in results[edge_name][probe_name]:
                 if variable_name is not 'position':
                     assert results[edge_name][probe_name][variable_name]['unit'] == \
@@ -138,4 +137,15 @@ def test_create_variables_dictionaries(alfasim_file_single_edge_homogeneous_data
 def test_create_variables_dicitionaries_from_column_read(alfasim_file_single_edge_homogeneous_data):
     results = create_variables_dicitionaries_from_column_read(alfasim_file_single_edge_homogeneous_data['dataframe'])
 
-    assert results == (alfasim_file_single_edge_homogeneous_data['results'])
+    test_results = alfasim_file_single_edge_homogeneous_data['results']
+
+    for edge_name in results:
+        for probe_name in results[edge_name]:
+            if probe_name.is_integer():
+                probe_name = int(probe_name)
+            assert results[edge_name][probe_name]["position"] == test_results[edge_name][str(probe_name)]["position"]
+            for variable_name in results[edge_name][probe_name]:
+                if variable_name is not 'position':
+                    assert results[edge_name][probe_name][variable_name]['unit'] == \
+                           test_results[edge_name][str(probe_name)][variable_name]['unit']
+

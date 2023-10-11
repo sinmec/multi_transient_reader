@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def get_variable_names(dataframe):
     variable_names = ['Time']
     column_names = dataframe.keys()
@@ -135,6 +136,7 @@ def create_variables_dicitionaries_from_column_read(dataframe):
         if variable_name not in results_dict[edge_name][probe_position]:
             results_dict[edge_name][probe_position][variable_name] = {}
             results_dict[edge_name][probe_position][variable_name]["unit"] = unit
-            results_dict[edge_name][probe_position][variable_name]["values"] = np.array(dataframe[column_name].tolist(),dtype=float)
+            results_dict[edge_name][probe_position][variable_name]["values"] = np.array(dataframe[column_name].tolist(),
+                                                                                        dtype=float)
 
     return results_dict
