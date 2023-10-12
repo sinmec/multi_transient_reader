@@ -253,7 +253,11 @@ def alfasim_file(request):
 @pytest.fixture()
 def shuffled_alfasim_files(alfasim_file):
     _shuffled_alfasim_files = []
-    for _ in range(10):
+    """
+    Shuffling column order to mimic different edge, variable and position possible order.
+    From a single dataframe, 100 new random dataframes are generated
+    """
+    for _ in range(100):
         alfasim_file_copy = alfasim_file.copy()
         df_shuffle = alfasim_file_copy["dataframe"].copy()
         alfasim_file_copy["dataframe"] = shuffle_dataframe(df_shuffle)
