@@ -107,13 +107,22 @@ def create_results_dictionary(dataframe):
         if edge_name not in results_dict:
             results_dict[edge_name] = {}
         for probe_position in probe_positions:
+            probe_position_string = f"{probe_position:g}".replace(".", ",")
+            combination_exists = False
+            for column in dataframe.keys():
+                edge_and_probe_position_name = (
+                    f"({edge_name} ({probe_position_string} [m]))"
+                )
+                if edge_and_probe_position_name in column:
+                    combination_exists = True
+            if not combination_exists:
+                continue
             if f"{probe_position:g}" not in results_dict[edge_name]:
                 results_dict[edge_name][f"{probe_position:g}"] = {
                     "position": probe_position
                 }
             for variable_name in variable_names:
                 for unit in units:
-                    probe_position_string = f"{probe_position:g}".replace(".", ",")
                     column_name = f"{variable_name} ({edge_name} ({probe_position_string} [m])) [{unit}]"
                     if column_name in dataframe.keys():
                         results_dict[edge_name][f"{probe_position:g}"][

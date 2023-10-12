@@ -5,7 +5,6 @@ import pandas as pd
 import pytest
 
 
-@pytest.fixture(scope="session")
 def alfasim_file_single_edge_homogeneous_data():
     """
     This fixture contains a dataset with a single edge and multiple probe positions.
@@ -14,7 +13,7 @@ def alfasim_file_single_edge_homogeneous_data():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/transient_example_short.xlsx")
+    xls_file = Path(file_path, "../data/alfasim_file_single_edge_homogeneous_data.xlsx")
 
     return {
         "dataframe": pd.read_excel(xls_file, decimal=","),
@@ -119,3 +118,113 @@ def alfasim_file_single_edge_homogeneous_data():
             }
         },
     }
+
+
+def alfasim_file_two_edges_homogeneous_data():
+    """
+    This fixture contains a dataset with two edges and multiple probe positions.
+    The probe positions are homogeneous, i.e., have the exact variables at the same points.
+    """
+
+    # TODO: Find an elegant way using pytest tools to remove this gambiarra
+    file_path = os.path.dirname(__file__)
+    xls_file = Path(file_path, "../data/alfasim_file_two_edges_homogeneous_data.xls")
+
+    return {
+        "dataframe": pd.read_excel(xls_file, decimal=","),
+        "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
+        "edge_names": ["Conn 1", "Conn 2"],
+        "probe_positions": ([5, 7.98, 10, 22.63]),
+        "units": sorted(["s", "bar", "m3/m3"]),  # TODO: Sort this data struct
+        "results": {
+            "Conn 1": {
+                "22.63": {
+                    "position": 22.63,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                },
+                "7.98": {
+                    "position": 7.98,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                },
+            },
+            "Conn 2": {
+                "5": {
+                    "position": 5.0,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                },
+                "10": {
+                    "position": 10.0,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                },
+            },
+        },
+    }
+
+
+def alfasim_file_two_edges_heterogeneous_data():
+    """
+    This fixture contains a dataset with two edges and multiple probe positions.
+    The probe positions are heterogeneous, i.e., each probe point save a different set of variables.
+    """
+
+    # TODO: Find an elegant way using pytest tools to remove this gambiarra
+    file_path = os.path.dirname(__file__)
+    xls_file = Path(file_path, "../data/alfasim_file_two_edges_heterogeneous_data.xlsx")
+
+    return {
+        "dataframe": pd.read_excel(xls_file, decimal=","),
+        "variable_names": sorted(
+            ["Time", "Absolute Pressure", "Holdup", "Total Oil Mass Flow Rate"]
+        ),
+        "edge_names": ["Conn 1", "Conn 2"],
+        "probe_positions": ([5, 7.98, 10, 14.33, 22.63]),
+        "units": sorted(["s", "bar", "m3/m3", "kg/s"]),  # TODO: Sort this data struct
+        "results": {
+            "Conn 1": {
+                "22.63": {
+                    "position": 22.63,
+                    "Absolute Pressure": {"unit": "bar"},
+                },
+                "7.98": {
+                    "position": 7.98,
+                    "Holdup": {"unit": "m3/m3"},
+                    "Total Oil Mass Flow Rate": {"unit": "kg/s"},
+                },
+                "14.33": {
+                    "position": 14.33,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                },
+            },
+            "Conn 2": {
+                "5": {
+                    "position": 5.0,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                    "Total Oil Mass Flow Rate": {"unit": "kg/s"},
+                },
+                "10": {
+                    "position": 10.0,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                    "Total Oil Mass Flow Rate": {"unit": "kg/s"},
+                },
+            },
+        },
+    }
+
+
+@pytest.fixture(
+    scope="session",
+    params=[
+        alfasim_file_single_edge_homogeneous_data(),
+        alfasim_file_two_edges_homogeneous_data(),
+        alfasim_file_two_edges_heterogeneous_data(),
+    ],
+)
+def alfasim_file(request):
+    return request.param
