@@ -121,11 +121,10 @@ def create_results_dictionary(dataframe):
             probe_position_name = f"{probe_position:g}"
             results_dict[edge_name][probe_position_name] = {"position": probe_position}
 
-        if variable_name not in results_dict[edge_name][probe_position_name]:
-            results_dict[edge_name][probe_position_name][variable_name] = {}
-            results_dict[edge_name][probe_position_name][variable_name]["unit"] = unit
-            results_dict[edge_name][probe_position_name][variable_name][
-                "values"
-            ] = dataframe[column_name].to_numpy(dtype=float)
+        results_dict[edge_name][probe_position_name][variable_name] = {}
+        results_dict[edge_name][probe_position_name][variable_name]["unit"] = unit
+        results_dict[edge_name][probe_position_name][variable_name][
+            "values"
+        ] = dataframe[column_name].to_numpy(dtype=float)
 
     return results_dict

@@ -1,8 +1,28 @@
 import os
+import random
 from pathlib import Path
 
 import pandas as pd
 import pytest
+
+
+def shuffle_dataframe(dataframe):
+    N_columns = len(dataframe.keys())
+    original_order = list(range(1, N_columns))
+    shuffled_order = original_order.copy()
+    random.shuffle(shuffled_order)
+
+    original_keys = list(dataframe.keys())
+    shuffled_keys = original_keys.copy()
+    for i in range(1, N_columns):
+        shuffled_keys[i] = original_keys[shuffled_order[i - 1]]
+
+    dataframe_copy = dataframe.copy()
+    for i in range(1, N_columns):
+        dataframe.iloc[:, i] = dataframe_copy.iloc[:, shuffled_order[i - 1]]
+
+    dataframe.columns = shuffled_keys
+    return dataframe
 
 
 def alfasim_file_single_edge_homogeneous_data():
@@ -228,3 +248,14 @@ def alfasim_file_two_edges_heterogeneous_data():
 )
 def alfasim_file(request):
     return request.param
+
+
+@pytest.fixture()
+def shuffled_alfasim_files(alfasim_file):
+    _shuffled_alfasim_files = []
+    for _ in range(10):
+        alfasim_file_copy = alfasim_file.copy()
+        df_shuffle = alfasim_file_copy["dataframe"].copy()
+        alfasim_file_copy["dataframe"] = shuffle_dataframe(df_shuffle)
+        _shuffled_alfasim_files.append(alfasim_file_copy)
+    return _shuffled_alfasim_files
