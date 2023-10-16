@@ -1,6 +1,3 @@
-import numpy as np
-
-
 def get_variable_names(dataframe):
     variable_names = ["Time"]
     column_names = dataframe.keys()
@@ -97,36 +94,37 @@ def check_time_column(dataframe):
 
 
 def create_results_dictionary(dataframe):
-    probe_positions = get_probe_position(dataframe)
-    variable_names = get_variable_names(dataframe)
-    edge_names = get_edge_names(dataframe)
-    units = get_variable_units(dataframe)
-
+    column_names = dataframe.keys()
     results_dict = {}
-    for edge_name in edge_names:
+    for column_name in column_names[1:]:
+        first_open_parentheses = column_name.find("(")
+        second_open_parentheses = column_name.find("(", first_open_parentheses + 1)
+        first_open_brackets = column_name.find("[")
+        second_open_brackets = column_name.find("[", first_open_brackets + 1)
+        first_close_brackets = column_name.find("]")
+        second_close_brackets = column_name.find("]", first_close_brackets + 1)
+        probe_position = float(
+            (
+                column_name[second_open_parentheses + 1 : first_open_brackets].strip()
+            ).replace(",", ".")
+        )
+        edge_name = column_name[
+            first_open_parentheses + 1 : second_open_parentheses - 1
+        ].strip()
+        variable_name = column_name[: first_open_parentheses - 1].strip()
+        unit = column_name[second_open_brackets + 1 : second_close_brackets].strip()
+
         if edge_name not in results_dict:
             results_dict[edge_name] = {}
-        for probe_position in probe_positions:
-            probe_position_string = f"{probe_position:g}".replace(".", ",")
-            combination_exists = False
-            for column in dataframe.keys():
-                edge_and_probe_position_name = (
-                    f"({edge_name} ({probe_position_string} [m]))"
-                )
-                if edge_and_probe_position_name in column:
-                    combination_exists = True
-            if not combination_exists:
-                continue
-            if f"{probe_position:g}" not in results_dict[edge_name]:
-                results_dict[edge_name][f"{probe_position:g}"] = {
-                    "position": probe_position
-                }
-            for variable_name in variable_names:
-                for unit in units:
-                    column_name = f"{variable_name} ({edge_name} ({probe_position_string} [m])) [{unit}]"
-                    if column_name in dataframe.keys():
-                        results_dict[edge_name][f"{probe_position:g}"][
-                            variable_name
-                        ] = {"unit": unit, "value": np.array([], dtype=float)}
+
+        if probe_position not in results_dict[edge_name]:
+            probe_position_name = f"{probe_position:g}"
+            results_dict[edge_name][probe_position_name] = {"position": probe_position}
+
+        results_dict[edge_name][probe_position_name][variable_name] = {}
+        results_dict[edge_name][probe_position_name][variable_name]["unit"] = unit
+        results_dict[edge_name][probe_position_name][variable_name][
+            "values"
+        ] = dataframe[column_name].to_numpy(dtype=float)
 
     return results_dict

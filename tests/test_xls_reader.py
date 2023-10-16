@@ -10,7 +10,7 @@ from src.xls_reader.xls_reader import (
     get_variable_units,
     create_results_dictionary,
 )
-from tests.fixtures.datasets import alfasim_file
+from tests.fixtures.datasets import alfasim_file, shuffled_alfasim_files
 
 
 def test_get_variable_names(alfasim_file):
@@ -52,7 +52,6 @@ def test_create_variables_dictionaries(
     alfasim_file,
 ):
     results = create_results_dictionary(alfasim_file["dataframe"])
-
     test_results = alfasim_file["results"]
 
     for edge_name in results:
@@ -66,3 +65,8 @@ def test_create_variables_dictionaries(
                         results[edge_name][probe_name][variable_name]["unit"]
                         == test_results[edge_name][probe_name][variable_name]["unit"]
                     )
+
+
+def test_create_variables_dictionaries_shuffled_columns(shuffled_alfasim_files):
+    for alfasim_file in shuffled_alfasim_files:
+        test_create_variables_dictionaries(alfasim_file)
