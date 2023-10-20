@@ -19,10 +19,13 @@ class SlugUnit():
         self.liquid_slug = None
         self.elongated_bubble = None
 
-class TransientSignal():
-   def __init__(self,slug_unit):
-       self.slug_unit = slug_unit
-       self.create_signal =
+# class TransientSignal():
+#     slug_unit =[]
+#     def __init__(self,create_signal):
+#         self.slug_unit = slug_unit
+#         self.create_signal =
+#     def sdsfs(self):
+#         self.signal =
 
 
 delta_x = 0.01
@@ -56,7 +59,11 @@ for slug_unit in slug_unit_colection:
 
 
 holdup_slug_unit_total = np.concatenate(holdup_slug_unit_total)
-holdup_slug_unit_total_new = np.roll(holdup_slug_unit_total, shift=10)
+for i in range(1,10,1):
+    slug_unit_signal=[]
+    holdup_slug_unit_total_new = np.roll(holdup_slug_unit_total, shift=i)
+    slug_unit_signal.append(holdup_slug_unit_total_new)
+
 
 pipe_length = len(holdup_slug_unit_total) * delta_x
 length = np.linspace(0, pipe_length, len(holdup_slug_unit_total))
