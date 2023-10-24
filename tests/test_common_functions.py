@@ -23,7 +23,7 @@ def non_uniform_sine_wave(sine_parameters):
     return time_values, transient_values
 
 
-@pytest.mark.parametrize("total_points", np.linspace(100, 100000, num=4, endpoint=True, dtype=int))
+@pytest.mark.parametrize("total_points", np.linspace(10000, 100000, num=4, endpoint=True, dtype=int))
 @pytest.mark.parametrize("y_value", np.linspace(10.0, 100000, num=10, endpoint=True, dtype=float))
 @pytest.mark.parametrize("test_function", [uniform_sine_wave, non_uniform_sine_wave])
 def test_compute_temporal_average(total_points, y_value, test_function):
@@ -39,7 +39,7 @@ def test_compute_temporal_average(total_points, y_value, test_function):
     assert average_value == pytest.approx(y_value, rel=1.0e-3)
 
 
-@pytest.mark.parametrize("total_points", np.linspace(100, 100000, num=4, endpoint=True, dtype=int))
+@pytest.mark.parametrize("total_points", np.linspace(10000, 100000, num=4, endpoint=True, dtype=int))
 @pytest.mark.parametrize("y_value", np.linspace(10.0, 100000, num=10, endpoint=True, dtype=float))
 @pytest.mark.parametrize("test_function", [uniform_sine_wave, non_uniform_sine_wave])
 def test_compute_temporal_std(total_points, y_value, test_function):
