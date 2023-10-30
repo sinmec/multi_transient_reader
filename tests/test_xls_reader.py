@@ -54,17 +54,19 @@ def test_create_variables_dictionaries(
     results = create_results_dictionary(alfasim_file["dataframe"])
     test_results = alfasim_file["results"]
 
+    print(results)
+
     for edge_name in results:
-        for probe_name in results[edge_name]:
+        for probe_name in test_results[edge_name]:
             assert results[edge_name][probe_name]["position"] == pytest.approx(
                 test_results[edge_name][probe_name]["position"], abs=1.0e-3
             )
-            for variable_name in results[edge_name][probe_name]:
+            for variable_name in test_results[edge_name][probe_name]:
                 if variable_name is not "position":
                     assert (
                         results[edge_name][probe_name][variable_name]["unit"]
-                        == test_results[edge_name][probe_name][variable_name]["unit"]
-                    )
+                       == test_results[edge_name][probe_name][variable_name]["unit"]
+                     )
 
 
 def test_create_variables_dictionaries_shuffled_columns(shuffled_alfasim_files):

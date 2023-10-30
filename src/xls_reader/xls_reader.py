@@ -1,9 +1,22 @@
 def get_variable_names(dataframe):
     variable_names = ["Time"]
     column_names = dataframe.keys()
-    for item in column_names[1:]:
-        first_open_parentheses = item.find("(")
-        variable_names.append(item[: first_open_parentheses - 1].strip())
+    for column_name in column_names[1:]:
+        first_open_parentheses = column_name.find("(")
+        first_colon = column_name.find(":")
+        second_colon = column_name.find(":", first_colon + 1)
+        if ":" in column_name:
+            contador = 0
+            posicao = column_name.find(":")
+            while posicao != -1:
+                contador += 1
+                posicao = column_name.find(":", posicao + 1)
+            if contador == 1:
+                variable_names.append(column_name[first_colon+1: first_open_parentheses - 1].strip())
+            elif contador == 2:
+                variable_names.append(column_name[first_colon + 1: second_colon].strip())
+        else:
+            variable_names.append(column_name[: first_open_parentheses - 1].strip())
 
     return sorted(set(variable_names))
 
@@ -103,14 +116,8 @@ def create_results_dictionary(dataframe):
         second_open_brackets = column_name.find("[", first_open_brackets + 1)
         first_close_brackets = column_name.find("]")
         second_close_brackets = column_name.find("]", first_close_brackets + 1)
-        probe_position = float(
-            (
-                column_name[second_open_parentheses + 1 : first_open_brackets].strip()
-            ).replace(",", ".")
-        )
-        edge_name = column_name[
-            first_open_parentheses + 1 : second_open_parentheses - 1
-        ].strip()
+        probe_position = float((column_name[second_open_parentheses + 1 : first_open_brackets].strip()).replace(",", "."))
+        edge_name = column_name[first_open_parentheses + 1 : second_open_parentheses - 1].strip()
         variable_name = column_name[: first_open_parentheses - 1].strip()
         unit = column_name[second_open_brackets + 1 : second_close_brackets].strip()
 

@@ -16,3 +16,24 @@ def compute_temporal_std(time_values, transient_values):
     std_value = np.sqrt(std_value)
 
     return std_value
+
+def calculate_mode(dataframe):
+    if len(vetor) == 0:
+        return None
+    frequency_dict = {}
+    for numero in dataframe:
+        if numero in frequency_dict:
+            frequency_dict[numero] += 1
+        else:
+            frequency_dict[numero] = 1
+
+    mode = max(frequency_dict, key=frequency_dict.get)
+
+
+    mode_frequency = frequency_dict[mode]
+    for num, frequency in frequency_dict.items():
+        if frequency == mode_frequency and num != mode:
+            return "não há moda"
+
+    return mode  # Retorna a moda
+
