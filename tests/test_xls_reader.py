@@ -54,8 +54,6 @@ def test_create_variables_dictionaries(
     results = create_results_dictionary(alfasim_file["dataframe"])
     test_results = alfasim_file["results"]
 
-    print(results)
-
     for edge_name in results:
         for probe_name in test_results[edge_name]:
             assert results[edge_name][probe_name]["position"] == pytest.approx(
