@@ -28,7 +28,7 @@ def shuffle_dataframe(dataframe):
 def alfasim_file_single_edge_homogeneous_data():
     """
     This fixture contains a dataset with a single edge and multiple probe positions.
-    The probe positions are homogeneous, i.e., have the exact variables at the same points.
+    The probe positions are homogeneous, i.e., have the exact variables at the same points..
     """
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
