@@ -43,7 +43,8 @@ def alfasim_file_single_edge_homogeneous_data():
             [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8.0, 8.5, 9, 9.5]
         ),
         "units": sorted(["s", "bar", "m3/m3"]),  # TODO: Sort this data struct
-        "results": {
+        "parametric run" : [1,2],
+        "results": {"1":{
             "Conn 1": {
                 "1": {
                     "position": 1.0,
@@ -137,7 +138,7 @@ def alfasim_file_single_edge_homogeneous_data():
                 },
             }
         },
-    }
+    }}
 
 
 def alfasim_file_two_edges_homogeneous_data():
