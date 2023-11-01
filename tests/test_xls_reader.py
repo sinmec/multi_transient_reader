@@ -74,4 +74,4 @@ def test_create_variables_dictionaries_shuffled_columns(shuffled_alfasim_files):
 
 def test_get_experiments_in_parametric_runs(alfasim_file):
     parametric = get_experiments_in_parametric_runs(alfasim_file["dataframe"])
-    assert parametric ==1
+    assert parametric == alfasim_file["units"]
