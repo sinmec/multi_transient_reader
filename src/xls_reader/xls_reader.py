@@ -1,5 +1,20 @@
 import numpy as np
 
+def get_experiments_in_parametric_runs(dataframe):
+    parametric_cases_number = []
+    column_names = dataframe.keys()
+    for column_name in column_names[1:]:
+        if "#" in column_name:
+            first_hashtag = column_name.find("#")
+            first_colon = column_name.find(":")
+            parametric_case_number = column_name[first_hashtag+1:first_colon].strip()
+            if parametric_case_number in parametric_cases_number:
+                continue
+            else:
+                parametric_cases_number.append(parametric_case_number)
+        else:
+            parametric_cases_number.append(None)
+    return parametric_cases_number
 
 def get_variable_names(dataframe):
     variable_names = ["Time"]

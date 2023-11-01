@@ -5,7 +5,7 @@ import numpy as np
 from src.statistical_tools.common_functions import compute_temporal_std, compute_temporal_average
 from src.xls_reader.xls_reader import get_variable_names, get_number_of_variables, get_number_of_probes, \
     get_probe_position, get_number_of_edges, get_edge_names, get_variable_units, create_results_dictionary, \
-    check_time_column
+    check_time_column, get_experiments_in_parametric_runs
 
 ##caminho_arquivo_excel = r'C:\Users\Gustavo\OneDrive\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC\simulacao_caso_tese_dalla_maria.data\dalla_maria_49cases_report.xls'
 main_folder = Path(r'C:\Users\Gustavo\OneDrive\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC\simulacao_caso_tese_dalla_maria.data')
@@ -15,9 +15,15 @@ sheets = xls_abas.sheet_names
 for sheet in range (4):
     dataframe = pd.read_excel(xls_file , sheet_name= sheets[sheet])
     result_dictionary = create_results_dictionary(dataframe)
-
-
-
+    variable_name = get_variable_names(dataframe)
+    number_of_variables = get_number_of_variables(dataframe)
+    number_of_probes = get_number_of_probes(dataframe)
+    probes_position = get_probe_position(dataframe)
+    number_of_edges = get_number_of_edges(dataframe)
+    edge_names = get_edge_names(dataframe)
+    units = get_variable_units(dataframe)
+    time = check_time_column(dataframe)
+    parametric = get_experiments_in_parametric_runs(dataframe)
 a=2
 # dataframe = [None]*2
 # for sheet in range (2):
