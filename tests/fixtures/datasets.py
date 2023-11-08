@@ -27,7 +27,7 @@ def shuffle_dataframe(dataframe):
 
 def alfasim_file_single_edge_homogeneous_data():
     """
-    This fixture contains a dataset with a single edge and multiple probe positions.
+    This fixture contains a dataset with a single edge, multiple probe positions and no parametric run.
     The probe positions are homogeneous, i.e., have the exact variables at the same points..
     """
 
@@ -142,7 +142,7 @@ def alfasim_file_single_edge_homogeneous_data():
 
 def alfasim_file_single_edge_homogeneous_data_and_parametric_run():
     """
-    This fixture contains a dataset with a single edge, multiple probe positions and parametric runs.
+    This fixture contains a dataset with a single edge, multiple probe positions and parametric run.
     The probe positions are homogeneous, i.e., have the exact variables at the same points..
     """
 
@@ -212,7 +212,50 @@ def alfasim_file_two_edges_homogeneous_data():
         },
     }
 
+def alfasim_file_two_edges_homogeneous_data_and_parametric_run():
+    """
+    This fixture contains a dataset with two edges, multiple probe positions and parametric run.
+    The probe positions are homogeneous, i.e., have the exact variables at the same points.
+    """
 
+    # TODO: Find an elegant way using pytest tools to remove this gambiarra
+    file_path = os.path.dirname(__file__)
+    xls_file = Path(file_path, "../data/alfasim_file_two_edges_homogeneous_data_and_parametric_run.xls")
+
+    return {
+        "dataframe": pd.read_excel(xls_file, decimal=","),
+        "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
+        "edge_names": ["Conn 1", "Conn 2"],
+        "probe_positions": ([5, 7.98, 10, 22.63]),
+        "units": sorted(["s", "bar", "m3/m3"]),  # TODO: Sort this data struct
+        "parametric_run":[0,1],
+        "results":{0 : {
+            "Conn 1": {
+                "22.63": {
+                    "position": 22.63,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                },
+                "7.98": {
+                    "position": 7.98,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                },
+            },
+            1 : {"Conn 2": {
+                "5": {
+                    "position": 5.0,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                },
+                "10": {
+                    "position": 10.0,
+                    "Absolute Pressure": {"unit": "bar"},
+                    "Holdup": {"unit": "m3/m3"},
+                },
+            },
+        },
+    }}}
 def alfasim_file_two_edges_heterogeneous_data():
     """
     This fixture contains a dataset with two edges and multiple probe positions.
@@ -321,3 +364,5 @@ def shuffled_alfasim_files(alfasim_file):
         alfasim_file_copy["dataframe"] = shuffle_dataframe(df_shuffle)
         _shuffled_alfasim_files.append(alfasim_file_copy)
     return _shuffled_alfasim_files
+
+a=2
