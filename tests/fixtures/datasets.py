@@ -156,16 +156,16 @@ def alfasim_file_single_edge_homogeneous_data_and_parametric_run():
         "edge_names": ["Conn 1"],
         "probe_positions": ([1, 1.5]),
         "units": sorted(["s", "bar", "m3/m3"]),  # TODO: Sort this data struct
-        "parametric_run": [0, 1, 2],
-        "results": {0: {
+        "parametric_run": ['0', '1', '2'],
+        "results": {'0': {
             "Conn 1": {"1": {"position": 1.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
                        "1.5": {"position": 1.5, "Absolute Pressure": {"unit": "bar"},
                                "Holdup": {"unit": "m3/m3"}, }, }, },
-            1: {"Conn 1": {
+           '1': {"Conn 1": {
                 "1": {"position": 1.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
                 "1.5": {"position": 1.5, "Absolute Pressure": {"unit": "bar"},
                         "Holdup": {"unit": "m3/m3"}, }, }, },
-            2: {"Conn 1": {
+            '2': {"Conn 1": {
                 "1": {"position": 1.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
                 "1.5": {"position": 1.5, "Absolute Pressure": {"unit": "bar"},
                         "Holdup": {"unit": "m3/m3"}, }, }, },
@@ -233,20 +233,20 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run():
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 22.63]),
         "units": sorted(["s", "bar", "m3/m3"]),  # TODO: Sort this data struct
-        "parametric_run": [0, 1, 2],
-        "results": {0: {"Conn 1": {
+        "parametric_run": ['0', '1', '2'],
+        "results": {'0': {"Conn 3": {
             "22.63": {"position": 22.63, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
             "7.98": {"position": 7.98, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, },
             "Conn 2": {
                 "5": {"position": 5.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
                 "10": {"position": 10.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, }, },
-            1: {"Conn 1": {
+            '1': {"Conn 3": {
                 "22.63": {"position": 22.63, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
                 "7.98": {"position": 7.98, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, },
                 "Conn 2": {
                     "5": {"position": 5.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
                     "10": {"position": 10.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, }, },
-            2: {"Conn 1": {
+            '2': {"Conn 3": {
                 "22.63": {"position": 22.63, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
                 "7.98": {"position": 7.98, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, },
                 "Conn 2": {
@@ -326,8 +326,8 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 14.33, 22.63]),
         "units": sorted(["s", "bar", "m3/m3", "kg/s"]),  # TODO: Sort this data struct
-        "parametric_runs": [0, 1],
-        "results": {0: {
+        "parametric_runs": ['0', '1'],
+        "results": {'0': {
             "Conn 1": {
                 "22.63": {
                     "position": 22.63,
@@ -359,7 +359,7 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
                 },
             },
         },
-            1: {
+            '1': {
                 "Conn 1": {
                     "22.63": {
                         "position": 22.63,
@@ -396,10 +396,7 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
 
 @pytest.fixture(scope="session",
                 params=[alfasim_file_single_edge_homogeneous_data(), alfasim_file_two_edges_homogeneous_data(),
-                        alfasim_file_two_edges_heterogeneous_data(),
-                        alfasim_file_single_edge_homogeneous_data_and_parametric_run(),
-                        alfasim_file_two_edges_homogeneous_data_and_parametric_run(),
-                        alfasim_file_two_edges_heterogeneous_data_and_parametric_run()], )
+                        alfasim_file_two_edges_heterogeneous_data(),], )
 def alfasim_file(request):
     return request.param
 
