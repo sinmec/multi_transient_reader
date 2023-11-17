@@ -33,7 +33,7 @@ def alfasim_file_single_edge_homogeneous_data():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/alfasim_file_single_edge_homogeneous_data.xlsx")
+    xls_file = Path(file_path, "../data/alfasim_file_single_edge_homogeneous_data.xls")
 
     return {
         "dataframe": pd.read_excel(xls_file, decimal=","),
@@ -148,26 +148,29 @@ def alfasim_file_single_edge_homogeneous_data_and_parametric_run():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/alfasim_file_single_edge_homogeneous_data_and_parametric_run")
-
+    xls_file = Path(file_path, "../data/alfasim_file_single_edge_homogeneous_data_and_parametric_run.xls")
+    xls_sheets = pd.ExcelFile(xls_file)
+    sheets = xls_sheets.sheet_names
     return {
-        "dataframe": pd.read_excel(xls_file, decimal=","),
+        "dataframe": [pd.read_excel(xls_file, decimal=",", sheet_name=sheets[0]),
+                      pd.read_excel(xls_file, decimal=",", sheet_name=sheets[1]),
+                      pd.read_excel(xls_file, decimal=",", sheet_name=sheets[2])],
         "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
         "edge_names": ["Conn 1"],
         "probe_positions": ([1, 1.5]),
-        "units": sorted(["s", "bar", "m3/m3"]),  # TODO: Sort this data struct
+        "units": sorted(["s", "Pa", "m3/m3"]),  # TODO: Sort this data struct
         "parametric_run": ['0', '1', '2'],
         "results": {'0': {
-            "Conn 1": {"1": {"position": 1.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
-                       "1.5": {"position": 1.5, "Absolute Pressure": {"unit": "bar"},
+            "Conn 1": {"1": {"position": 1.0, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, },
+                       "1.5": {"position": 1.5, "Absolute Pressure": {"unit": "Pa"},
                                "Holdup": {"unit": "m3/m3"}, }, }, },
-           '1': {"Conn 1": {
-                "1": {"position": 1.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
-                "1.5": {"position": 1.5, "Absolute Pressure": {"unit": "bar"},
+            '1': {"Conn 1": {
+                "1": {"position": 1.0, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, },
+                "1.5": {"position": 1.5, "Absolute Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "m3/m3"}, }, }, },
             '2': {"Conn 1": {
-                "1": {"position": 1.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
-                "1.5": {"position": 1.5, "Absolute Pressure": {"unit": "bar"},
+                "1": {"position": 1.0, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, },
+                "1.5": {"position": 1.5, "Absolute Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "m3/m3"}, }, }, },
         }}
 
@@ -226,32 +229,35 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run():
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
     xls_file = Path(file_path, "../data/alfasim_file_two_edges_homogeneous_data_and_parametric_run.xls")
-
+    xls_sheets = pd.ExcelFile(xls_file)
+    sheets = xls_sheets.sheet_names
     return {
-        "dataframe": pd.read_excel(xls_file, decimal=","),
+        "dataframe": [pd.read_excel(xls_file, decimal=",", sheet_name=sheets[0]),
+                      pd.read_excel(xls_file, decimal=",", sheet_name=sheets[1]),
+                      pd.read_excel(xls_file, decimal=",", sheet_name=sheets[2])],
         "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 22.63]),
-        "units": sorted(["s", "bar", "m3/m3"]),  # TODO: Sort this data struct
+        "units": sorted(["s", "Pa", "m3/m3"]),  # TODO: Sort this data struct
         "parametric_run": ['0', '1', '2'],
         "results": {'0': {"Conn 3": {
-            "22.63": {"position": 22.63, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
-            "7.98": {"position": 7.98, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, },
+            "22.63": {"position": 22.63, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, },
+            "7.98": {"position": 7.98, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, }, },
             "Conn 2": {
-                "5": {"position": 5.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
-                "10": {"position": 10.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, }, },
+                "5": {"position": 5.0, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, },
+                "10": {"position": 10.0, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, }, }, },
             '1': {"Conn 3": {
-                "22.63": {"position": 22.63, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
-                "7.98": {"position": 7.98, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, },
+                "22.63": {"position": 22.63, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, },
+                "7.98": {"position": 7.98, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, }, },
                 "Conn 2": {
-                    "5": {"position": 5.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
-                    "10": {"position": 10.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, }, },
+                    "5": {"position": 5.0, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, },
+                    "10": {"position": 10.0, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, }, }, },
             '2': {"Conn 3": {
-                "22.63": {"position": 22.63, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
-                "7.98": {"position": 7.98, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, }, },
+                "22.63": {"position": 22.63, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, },
+                "7.98": {"position": 7.98, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, }, },
                 "Conn 2": {
-                    "5": {"position": 5.0, "Absolute Pressure": {"unit": "bar"}, "Holdup": {"unit": "m3/m3"}, },
-                    "10": {"position": 10.0, "Absolute Pressure": {"unit": "bar"},
+                    "5": {"position": 5.0, "Absolute Pressure": {"unit": "Pa"}, "Holdup": {"unit": "m3/m3"}, },
+                    "10": {"position": 10.0, "Absolute Pressure": {"unit": "Pa"},
                            "Holdup": {"unit": "m3/m3"}, }, }, }, }, }
 
 
@@ -263,7 +269,7 @@ def alfasim_file_two_edges_heterogeneous_data():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/alfasim_file_two_edges_heterogeneous_data.xlsx")
+    xls_file = Path(file_path, "../data/alfasim_file_two_edges_heterogeneous_data.xls")
 
     return {
         "dataframe": pd.read_excel(xls_file, decimal=","),
@@ -272,12 +278,12 @@ def alfasim_file_two_edges_heterogeneous_data():
         ),
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 14.33, 22.63]),
-        "units": sorted(["s", "bar", "m3/m3", "kg/s"]),  # TODO: Sort this data struct
+        "units": sorted(["s", "Pa", "m3/m3", "kg/s"]),  # TODO: Sort this data struct
         "results": {
             "Conn 1": {
                 "22.63": {
                     "position": 22.63,
-                    "Absolute Pressure": {"unit": "bar"},
+                    "Absolute Pressure": {"unit": "Pa"},
                 },
                 "7.98": {
                     "position": 7.98,
@@ -286,20 +292,20 @@ def alfasim_file_two_edges_heterogeneous_data():
                 },
                 "14.33": {
                     "position": 14.33,
-                    "Absolute Pressure": {"unit": "bar"},
+                    "Absolute Pressure": {"unit": "Pa"},
                     "Holdup": {"unit": "m3/m3"},
                 },
             },
             "Conn 2": {
                 "5": {
                     "position": 5.0,
-                    "Absolute Pressure": {"unit": "bar"},
+                    "Absolute Pressure": {"unit": "Pa"},
                     "Holdup": {"unit": "m3/m3"},
                     "Total Oil Mass Flow Rate": {"unit": "kg/s"},
                 },
                 "10": {
                     "position": 10.0,
-                    "Absolute Pressure": {"unit": "bar"},
+                    "Absolute Pressure": {"unit": "Pa"},
                     "Holdup": {"unit": "m3/m3"},
                     "Total Oil Mass Flow Rate": {"unit": "kg/s"},
                 },
@@ -316,22 +322,25 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/alfasim_file_two_edges_heterogeneous_data_and_parametric_run.xlsx")
+    xls_file = Path(file_path, "../data/alfasim_file_two_edges_heterogeneous_data_and_parametric_run.xls")
+    xls_sheets = pd.ExcelFile(xls_file)
+    sheets = xls_sheets.sheet_names
 
     return {
-        "dataframe": pd.read_excel(xls_file, decimal=","),
+        "dataframe": [pd.read_excel(xls_file, decimal=",", sheet_name=sheets[0]),
+                       ],
         "variable_names": sorted(
             ["Time", "Absolute Pressure", "Holdup", "Total Oil Mass Flow Rate"]
         ),
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 14.33, 22.63]),
-        "units": sorted(["s", "bar", "m3/m3", "kg/s"]),  # TODO: Sort this data struct
+        "units": sorted(["s", "Pa", "m3/m3", "kg/s"]),  # TODO: Sort this data struct
         "parametric_runs": ['0', '1'],
         "results": {'0': {
             "Conn 1": {
                 "22.63": {
                     "position": 22.63,
-                    "Absolute Pressure": {"unit": "bar"},
+                    "Absolute Pressure": {"unit": "Pa"},
                 },
                 "7.98": {
                     "position": 7.98,
@@ -340,20 +349,20 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
                 },
                 "14.33": {
                     "position": 14.33,
-                    "Absolute Pressure": {"unit": "bar"},
+                    "Absolute Pressure": {"unit": "Pa"},
                     "Holdup": {"unit": "m3/m3"},
                 },
             },
             "Conn 2": {
                 "5": {
                     "position": 5.0,
-                    "Absolute Pressure": {"unit": "bar"},
+                    "Absolute Pressure": {"unit": "Pa"},
                     "Holdup": {"unit": "m3/m3"},
                     "Total Oil Mass Flow Rate": {"unit": "kg/s"},
                 },
                 "10": {
                     "position": 10.0,
-                    "Absolute Pressure": {"unit": "bar"},
+                    "Absolute Pressure": {"unit": "Pa"},
                     "Holdup": {"unit": "m3/m3"},
                     "Total Oil Mass Flow Rate": {"unit": "kg/s"},
                 },
@@ -363,7 +372,7 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
                 "Conn 1": {
                     "22.63": {
                         "position": 22.63,
-                        "Absolute Pressure": {"unit": "bar"},
+                        "Absolute Pressure": {"unit": "Pa"},
                     },
                     "7.98": {
                         "position": 7.98,
@@ -372,20 +381,20 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
                     },
                     "14.33": {
                         "position": 14.33,
-                        "Absolute Pressure": {"unit": "bar"},
+                        "Absolute Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "m3/m3"},
                     },
                 },
                 "Conn 2": {
                     "5": {
                         "position": 5.0,
-                        "Absolute Pressure": {"unit": "bar"},
+                        "Absolute Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "m3/m3"},
                         "Total Oil Mass Flow Rate": {"unit": "kg/s"},
                     },
                     "10": {
                         "position": 10.0,
-                        "Absolute Pressure": {"unit": "bar"},
+                        "Absolute Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "m3/m3"},
                         "Total Oil Mass Flow Rate": {"unit": "kg/s"},
                     },
@@ -396,7 +405,9 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
 
 @pytest.fixture(scope="session",
                 params=[alfasim_file_single_edge_homogeneous_data(), alfasim_file_two_edges_homogeneous_data(),
-                        alfasim_file_two_edges_heterogeneous_data(),], )
+                        alfasim_file_two_edges_heterogeneous_data(),])
+                        #alfasim_file_single_edge_homogeneous_data_and_parametric_run(),
+                        #alfasim_file_two_edges_homogeneous_data_and_parametric_run(),alfasim_file_two_edges_heterogeneous_data_and_parametric_run(), ], )
 def alfasim_file(request):
     return request.param
 
@@ -410,7 +421,8 @@ def shuffled_alfasim_files(alfasim_file):
     """
     for _ in range(100):
         alfasim_file_copy = alfasim_file.copy()
-        df_shuffle = alfasim_file_copy["dataframe"].copy()
-        alfasim_file_copy["dataframe"] = shuffle_dataframe(df_shuffle)
+        # df_shuffle = alfasim_file_copy["dataframe"].copy()
+        # alfasim_file_copy["dataframe"] = shuffle_dataframe(df_shuffle)
+        # _shuffled_alfasim_files.append(alfasim_file_copy)
         _shuffled_alfasim_files.append(alfasim_file_copy)
     return _shuffled_alfasim_files
