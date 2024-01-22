@@ -31,7 +31,9 @@ def merge_tabs_function(xls_file):
     for sheet_name in xls.sheet_names:
         df = xls.parse(sheet_name, decimal = ",")
         dataframe = pd.concat([dataframe, df], axis=1,)
-
+    dataframe.to_excel("dummy.xlsx",index=False)
+    excel_file = "dummy.xlsx"
+    dataframe = pd.read_excel(excel_file)
     return dataframe
 
 def alfasim_file_single_edge_homogeneous_data():
@@ -325,7 +327,7 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/alfasim_file_two_edges_heterogeneous_data_and_parametric_run.xlsx")
+    xls_file = Path(file_path, "../data/alfasim_file_two_edges_heterogeneous_data_and_parametric_run.xls")
 
     return {
         "dataframe": merge_tabs_function(xls_file),
@@ -405,7 +407,7 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
 
 @pytest.fixture(scope="session",
                 params=[alfasim_file_single_edge_homogeneous_data(), alfasim_file_two_edges_homogeneous_data(),
-                        alfasim_file_two_edges_heterogeneous_data(),], )
+                        alfasim_file_two_edges_heterogeneous_data(), alfasim_file_two_edges_heterogeneous_data_and_parametric_run(),])
 def alfasim_file(request):
     return request.param
 
