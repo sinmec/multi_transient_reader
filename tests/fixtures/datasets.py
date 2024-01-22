@@ -31,8 +31,8 @@ def merge_tabs_function(xls_file):
     for sheet_name in xls.sheet_names:
         df = xls.parse(sheet_name, decimal = ",")
         dataframe = pd.concat([dataframe, df], axis=1,)
-    dataframe.to_excel("dummy.xlsx",index=False)
-    excel_file = "dummy.xlsx"
+    dataframe.to_excel("temporary_file.xlsx",index=False)
+    excel_file = "temporary_file.xlsx"
     dataframe = pd.read_excel(excel_file)
     return dataframe
 
