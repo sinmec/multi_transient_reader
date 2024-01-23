@@ -1,32 +1,63 @@
+import numpy as np
+
+
 def get_variable_names(dataframe):
     variable_names = ["Time"]
     column_names = dataframe.keys()
-    for item in column_names[1:]:
-        first_open_parentheses = item.find("(")
-        variable_names.append(item[: first_open_parentheses - 1].strip())
-
+    for column_name in column_names[1:]:
+        if "Time [s]" in column_name:
+            continue
+        first_colon = column_name.find(":")
+        if "Base Run" in column_name or "#" in column_name:
+            if column_name.count(":") == 2:
+                second_colon = column_name.find(":", first_colon + 1)
+                variable_names.append(column_name[first_colon + 1: second_colon].strip())
+            else:
+                first_open_parentheses = column_name.find("(")
+                variable_names.append(column_name[first_colon + 1: first_open_parentheses].strip())
+        else:
+            if column_name.count(":") == 1:
+                variable_names.append(column_name[: first_colon].strip())
+            else:
+                first_open_parentheses = column_name.find("(")
+                variable_names.append(column_name[: first_open_parentheses].strip())
     return sorted(set(variable_names))
 
 
 def get_number_of_variables(dataframe):
     variable_names = ["Time"]
     column_names = dataframe.keys()
-    for item in column_names[1:]:
-        first_open_parentheses = item.find("(")
-        variable_names.append(item[: first_open_parentheses - 1].strip())
-
+    for column_name in column_names[1:]:
+        if "Time [s]" in column_name:
+            continue
+        first_colon = column_name.find(":")
+        if "Base Run" in column_name or "#" in column_name:
+            if column_name.count(":") == 2:
+                second_colon = column_name.find(":", first_colon + 1)
+                variable_names.append(column_name[first_colon + 1: second_colon].strip())
+            else:
+                first_open_parentheses = column_name.find("(")
+                variable_names.append(column_name[first_colon + 1: first_open_parentheses].strip())
+        else:
+            if column_name.count(":") == 1:
+                variable_names.append(column_name[: first_colon].strip())
+            else:
+                first_open_parentheses = column_name.find("(")
+                variable_names.append(column_name[: first_open_parentheses].strip())
     return len(set(variable_names))
 
 
 def get_number_of_probes(dataframe):
     probes_position = []
     column_names = dataframe.keys()
-    for item in column_names[1:]:
-        first_open_parentheses = item.find("(")
-        second_open_parentheses = item.find("(", first_open_parentheses + 1)
-        first_open_brackets = item.find("[")
+    for column_name in column_names:
+        if "Time [s]" in column_name:
+            continue
+        first_open_parentheses = column_name.find("(")
+        second_open_parentheses = column_name.find("(", first_open_parentheses + 1)
+        first_open_brackets = column_name.find("[")
         probes_position.append(
-            item[second_open_parentheses : first_open_brackets - 1].strip()
+            column_name[second_open_parentheses : first_open_brackets - 1].strip()
         )
 
     return len(set(probes_position))
@@ -35,12 +66,14 @@ def get_number_of_probes(dataframe):
 def get_probe_position(dataframe):
     probes_position = []
     column_names = dataframe.keys()
-    for item in column_names[1:]:
-        pos_first_open_parentheses = item.find("(")
-        pos_second_open_parentheses = item.find("(", pos_first_open_parentheses + 1)
-        pos_first_open_brackets = item.find("[")
+    for column_name in column_names[1:]:
+        if "Time [s]" in column_name:
+            continue
+        pos_first_open_parentheses = column_name.find("(")
+        pos_second_open_parentheses = column_name.find("(", pos_first_open_parentheses + 1)
+        pos_first_open_brackets = column_name.find("[")
         probes_position.append(
-            item[pos_second_open_parentheses + 1 : pos_first_open_brackets - 1].strip()
+            column_name[pos_second_open_parentheses + 1 : pos_first_open_brackets - 1].strip()
         )
     probes_position = [comma.replace(",", ".") for comma in probes_position]
 
@@ -50,11 +83,13 @@ def get_probe_position(dataframe):
 def get_number_of_edges(dataframe):
     edges_names = []
     column_names = dataframe.keys()
-    for item in column_names[1:]:
-        first_open_parentheses = item.find("(")
-        second_open_parentheses = item.find("(", first_open_parentheses + 1)
+    for column_name in column_names[1:]:
+        if "Time [s]" in column_name:
+            continue
+        first_open_parentheses = column_name.find("(")
+        second_open_parentheses = column_name.find("(", first_open_parentheses + 1)
         edges_names.append(
-            item[first_open_parentheses + 1 : second_open_parentheses - 1].strip()
+            column_name[first_open_parentheses + 1 : second_open_parentheses - 1].strip()
         )
 
     return len(set(edges_names))
@@ -63,11 +98,13 @@ def get_number_of_edges(dataframe):
 def get_edge_names(dataframe):
     edges_names = []
     column_names = dataframe.keys()
-    for item in column_names[1:]:
-        first_open_parentheses = item.find("(")
-        second_open_parentheses = item.find("(", first_open_parentheses + 1)
+    for column_name in column_names[1:]:
+        if "Time [s]" in column_name:
+            continue
+        first_open_parentheses = column_name.find("(")
+        second_open_parentheses = column_name.find("(", first_open_parentheses + 1)
         edges_names.append(
-            item[first_open_parentheses + 1 : second_open_parentheses - 1].strip()
+            column_name[first_open_parentheses + 1 : second_open_parentheses - 1].strip()
         )
 
     return sorted(set(edges_names))
@@ -77,6 +114,8 @@ def get_variable_units(dataframe):
     units_names = ["s"]
     column_names = dataframe.keys()
     for column_name in column_names[1:]:
+        if "Time [s]" in column_name:
+            continue
         first_open_brackets = column_name.find("[")
         second_open_brackets = column_name.find("[", first_open_brackets + 1)
         first_close_brackets = column_name.find("]")
@@ -90,41 +129,60 @@ def get_variable_units(dataframe):
 # TODO: When we implement a function to read the .xls(x) files
 #      , check if the the first column is 'Time[s]'
 def check_time_column(dataframe):
+    return dataframe.keys()[0]
     assert dataframe.keys()[0] == "Time [s]"
 
 
 def create_results_dictionary(dataframe):
     column_names = dataframe.keys()
     results_dict = {}
-    for column_name in column_names[1:]:
-        first_open_parentheses = column_name.find("(")
-        second_open_parentheses = column_name.find("(", first_open_parentheses + 1)
-        first_open_brackets = column_name.find("[")
-        second_open_brackets = column_name.find("[", first_open_brackets + 1)
-        first_close_brackets = column_name.find("]")
-        second_close_brackets = column_name.find("]", first_close_brackets + 1)
-        probe_position = float(
-            (
-                column_name[second_open_parentheses + 1 : first_open_brackets].strip()
-            ).replace(",", ".")
-        )
-        edge_name = column_name[
-            first_open_parentheses + 1 : second_open_parentheses - 1
-        ].strip()
-        variable_name = column_name[: first_open_parentheses - 1].strip()
-        unit = column_name[second_open_brackets + 1 : second_close_brackets].strip()
 
-        if edge_name not in results_dict:
-            results_dict[edge_name] = {}
+    for column_name in column_names:
+        if 'Time [s]' in column_name:
+            time = np.array(dataframe[column_name].tolist(), dtype=float)
+        else:
+            first_colon = column_name.find(":")
+            hashtag = column_name.find("#")
+            if "Base Run" in column_name or "#" in column_name:
+                if "#" in column_name:
+                    parametric_run = column_name[hashtag + 1: first_colon].strip()
+                else:
+                    parametric_run = "0"
+                results_dict.setdefault(str(parametric_run),{})
+                if column_name.count(":") == 2:
+                    second_colon = column_name.find(":", first_colon + 1)
+                    variable_name = column_name[first_colon + 1: second_colon].strip()
+                else:
+                    first_open_parentheses = column_name.find("(")
+                    variable_name = column_name[first_colon + 1: first_open_parentheses].strip()
+            else:
+                parametric_run = "0"
+                results_dict.setdefault(str(parametric_run), {})
+                if column_name.count(":") == 1:
+                    variable_name = column_name[: first_colon].strip()
+                else:
+                    first_open_parentheses = column_name.find("(")
+                    variable_name = column_name[: first_open_parentheses].strip()
 
-        if probe_position not in results_dict[edge_name]:
-            probe_position_name = f"{probe_position:g}"
-            results_dict[edge_name][probe_position_name] = {"position": probe_position}
 
-        results_dict[edge_name][probe_position_name][variable_name] = {}
-        results_dict[edge_name][probe_position_name][variable_name]["unit"] = unit
-        results_dict[edge_name][probe_position_name][variable_name][
-            "values"
-        ] = dataframe[column_name].to_numpy(dtype=float)
+            first_open_parentheses = column_name.find("(")
+            second_open_parentheses = column_name.find("(", first_open_parentheses + 1)
+            first_open_brackets = column_name.find("[")
+            second_open_brackets = column_name.find("[", first_open_brackets + 1)
+            first_close_brackets = column_name.find("]")
+            second_close_brackets = column_name.find("]", first_close_brackets + 1)
+
+            edge_name = column_name[first_open_parentheses + 1: second_open_parentheses - 1].strip()
+
+            unit_name = column_name[second_open_brackets + 1: second_close_brackets].strip()
+
+            probe_position_str = column_name[second_open_parentheses+1: first_open_brackets - 1].strip()
+            probe_position = probe_position_str.replace(',', '.')
+
+            results_dict[parametric_run].setdefault("time", np.array(time, dtype=float))
+            results_dict[parametric_run].setdefault(edge_name, {})
+            results_dict[parametric_run][edge_name].setdefault(str(probe_position), {"position":float(probe_position)})
+            results_dict[parametric_run][edge_name][probe_position].setdefault(variable_name,{"unit": unit_name, "values":np.array(dataframe[column_name].tolist(), dtype=float)})
 
     return results_dict
+
