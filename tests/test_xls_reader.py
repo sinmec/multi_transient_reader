@@ -52,18 +52,18 @@ def test_create_variables_dictionaries(alfasim_file):
     results = create_results_dictionary(alfasim_file["dataframe"])
 
     test_results = alfasim_file["results"]
-    for parametric_run in results:
-        for edge_name in results[parametric_run]:
-            if edge_name == "time":
-                continue
-            for probe_name in results[parametric_run][edge_name]:
+    for parametric_run in test_results:
+        for edge_name in test_results[parametric_run]:
+            for probe_name in test_results[parametric_run][edge_name]:
                 assert results[parametric_run][edge_name][probe_name][
                     "position"
                 ] == pytest.approx(
                     test_results[parametric_run][edge_name][probe_name]["position"],
                     abs=1.0e-3,
                 )
-                for variable_name in results[parametric_run][edge_name][probe_name]:
+                for variable_name in test_results[parametric_run][edge_name][
+                    probe_name
+                ]:
                     if variable_name is not "position":
                         assert (
                             results[parametric_run][edge_name][probe_name][
