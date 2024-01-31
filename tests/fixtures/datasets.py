@@ -46,7 +46,7 @@ def shuffle_dataframe(dataframe):
     return dataframe
 
 
-def merge_tabs_function(xls_file):
+def merge_tabs(xls_file):
     xls = pd.ExcelFile(xls_file)
     dataframe = pd.DataFrame()
 
@@ -74,7 +74,7 @@ def alfasim_file_single_edge_homogeneous_data():
     xls_file = Path(file_path, "../data/alfasim_file_single_edge_homogeneous_data.xlsx")
 
     return {
-        "dataframe": merge_tabs_function(xls_file),
+        "dataframe": merge_tabs(xls_file),
         "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
         "edge_names": ["Conn 1"],
         "probe_positions": (
@@ -195,7 +195,7 @@ def alfasim_file_single_edge_homogeneous_data_and_parametric_run():
     )
 
     return {
-        "dataframe": merge_tabs_function(xls_file),
+        "dataframe": merge_tabs(xls_file),
         "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
         "edge_names": ["Conn 1"],
         "probe_positions": ([1, 1.5]),
@@ -259,7 +259,7 @@ def alfasim_file_two_edges_homogeneous_data():
     xls_file = Path(file_path, "../data/alfasim_file_two_edges_homogeneous_data.xlsx")
 
     return {
-        "dataframe": merge_tabs_function(xls_file),
+        "dataframe": merge_tabs(xls_file),
         "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 22.63]),
@@ -310,7 +310,7 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run():
     )
 
     return {
-        "dataframe": merge_tabs_function(xls_file),
+        "dataframe": merge_tabs(xls_file),
         "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
         "edge_names": ["Conn 2", "Conn 3"],
         "probe_positions": ([5, 7.98, 10, 22.63]),
@@ -410,7 +410,7 @@ def alfasim_file_two_edges_heterogeneous_data():
     xls_file = Path(file_path, "../data/alfasim_file_two_edges_heterogeneous_data.xlsx")
 
     return {
-        "dataframe": merge_tabs_function(xls_file),
+        "dataframe": merge_tabs(xls_file),
         "variable_names": sorted(
             ["Time", "Absolute Pressure", "Holdup", "Total Oil Mass Flow Rate"]
         ),
@@ -469,7 +469,7 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
     )
 
     return {
-        "dataframe": merge_tabs_function(xls_file),
+        "dataframe": merge_tabs(xls_file),
         "variable_names": sorted(
             ["Time", "Absolute Pressure", "Holdup", "Total Oil Mass Flow Rate"]
         ),
