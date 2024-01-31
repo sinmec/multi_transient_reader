@@ -57,12 +57,21 @@ def test_create_variables_dictionaries(alfasim_file):
             if edge_name == "time":
                 continue
             for probe_name in results[parametric_run][edge_name]:
-                assert results[parametric_run][edge_name][probe_name]["position"] == pytest.approx(test_results[parametric_run][edge_name][probe_name]["position"], abs=1.0e-3)
+                assert results[parametric_run][edge_name][probe_name][
+                    "position"
+                ] == pytest.approx(
+                    test_results[parametric_run][edge_name][probe_name]["position"],
+                    abs=1.0e-3,
+                )
                 for variable_name in results[parametric_run][edge_name][probe_name]:
                     if variable_name is not "position":
                         assert (
-                            results[parametric_run][edge_name][probe_name][variable_name]["unit"]
-                            == test_results[parametric_run][edge_name][probe_name][variable_name]["unit"]
+                            results[parametric_run][edge_name][probe_name][
+                                variable_name
+                            ]["unit"]
+                            == test_results[parametric_run][edge_name][probe_name][
+                                variable_name
+                            ]["unit"]
                         )
 
 
