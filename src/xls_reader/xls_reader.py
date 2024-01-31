@@ -11,16 +11,20 @@ def get_variable_names(dataframe):
         if "Base Run" in column_name or "#" in column_name:
             if column_name.count(":") == 2:
                 second_colon = column_name.find(":", first_colon + 1)
-                variable_names.append(column_name[first_colon + 1: second_colon].strip())
+                variable_names.append(
+                    column_name[first_colon + 1 : second_colon].strip()
+                )
             else:
                 first_open_parentheses = column_name.find("(")
-                variable_names.append(column_name[first_colon + 1: first_open_parentheses].strip())
+                variable_names.append(
+                    column_name[first_colon + 1 : first_open_parentheses].strip()
+                )
         else:
             if column_name.count(":") == 1:
-                variable_names.append(column_name[: first_colon].strip())
+                variable_names.append(column_name[:first_colon].strip())
             else:
                 first_open_parentheses = column_name.find("(")
-                variable_names.append(column_name[: first_open_parentheses].strip())
+                variable_names.append(column_name[:first_open_parentheses].strip())
     return sorted(set(variable_names))
 
 
@@ -34,16 +38,20 @@ def get_number_of_variables(dataframe):
         if "Base Run" in column_name or "#" in column_name:
             if column_name.count(":") == 2:
                 second_colon = column_name.find(":", first_colon + 1)
-                variable_names.append(column_name[first_colon + 1: second_colon].strip())
+                variable_names.append(
+                    column_name[first_colon + 1 : second_colon].strip()
+                )
             else:
                 first_open_parentheses = column_name.find("(")
-                variable_names.append(column_name[first_colon + 1: first_open_parentheses].strip())
+                variable_names.append(
+                    column_name[first_colon + 1 : first_open_parentheses].strip()
+                )
         else:
             if column_name.count(":") == 1:
-                variable_names.append(column_name[: first_colon].strip())
+                variable_names.append(column_name[:first_colon].strip())
             else:
                 first_open_parentheses = column_name.find("(")
-                variable_names.append(column_name[: first_open_parentheses].strip())
+                variable_names.append(column_name[:first_open_parentheses].strip())
     return len(set(variable_names))
 
 
@@ -70,10 +78,14 @@ def get_probe_position(dataframe):
         if "Time [s]" in column_name:
             continue
         pos_first_open_parentheses = column_name.find("(")
-        pos_second_open_parentheses = column_name.find("(", pos_first_open_parentheses + 1)
+        pos_second_open_parentheses = column_name.find(
+            "(", pos_first_open_parentheses + 1
+        )
         pos_first_open_brackets = column_name.find("[")
         probes_position.append(
-            column_name[pos_second_open_parentheses + 1 : pos_first_open_brackets - 1].strip()
+            column_name[
+                pos_second_open_parentheses + 1 : pos_first_open_brackets - 1
+            ].strip()
         )
     probes_position = [comma.replace(",", ".") for comma in probes_position]
 
@@ -89,7 +101,9 @@ def get_number_of_edges(dataframe):
         first_open_parentheses = column_name.find("(")
         second_open_parentheses = column_name.find("(", first_open_parentheses + 1)
         edges_names.append(
-            column_name[first_open_parentheses + 1 : second_open_parentheses - 1].strip()
+            column_name[
+                first_open_parentheses + 1 : second_open_parentheses - 1
+            ].strip()
         )
 
     return len(set(edges_names))
@@ -104,7 +118,9 @@ def get_edge_names(dataframe):
         first_open_parentheses = column_name.find("(")
         second_open_parentheses = column_name.find("(", first_open_parentheses + 1)
         edges_names.append(
-            column_name[first_open_parentheses + 1 : second_open_parentheses - 1].strip()
+            column_name[
+                first_open_parentheses + 1 : second_open_parentheses - 1
+            ].strip()
         )
 
     return sorted(set(edges_names))
@@ -138,32 +154,33 @@ def create_results_dictionary(dataframe):
     results_dict = {}
 
     for column_name in column_names:
-        if 'Time [s]' in column_name:
+        if "Time [s]" in column_name:
             time = np.array(dataframe[column_name].tolist(), dtype=float)
         else:
             first_colon = column_name.find(":")
             hashtag = column_name.find("#")
             if "Base Run" in column_name or "#" in column_name:
                 if "#" in column_name:
-                    parametric_run = column_name[hashtag + 1: first_colon].strip()
+                    parametric_run = column_name[hashtag + 1 : first_colon].strip()
                 else:
                     parametric_run = "0"
-                results_dict.setdefault(str(parametric_run),{})
+                results_dict.setdefault(str(parametric_run), {})
                 if column_name.count(":") == 2:
                     second_colon = column_name.find(":", first_colon + 1)
-                    variable_name = column_name[first_colon + 1: second_colon].strip()
+                    variable_name = column_name[first_colon + 1 : second_colon].strip()
                 else:
                     first_open_parentheses = column_name.find("(")
-                    variable_name = column_name[first_colon + 1: first_open_parentheses].strip()
+                    variable_name = column_name[
+                        first_colon + 1 : first_open_parentheses
+                    ].strip()
             else:
                 parametric_run = "0"
                 results_dict.setdefault(str(parametric_run), {})
                 if column_name.count(":") == 1:
-                    variable_name = column_name[: first_colon].strip()
+                    variable_name = column_name[:first_colon].strip()
                 else:
                     first_open_parentheses = column_name.find("(")
-                    variable_name = column_name[: first_open_parentheses].strip()
-
+                    variable_name = column_name[:first_open_parentheses].strip()
 
             first_open_parentheses = column_name.find("(")
             second_open_parentheses = column_name.find("(", first_open_parentheses + 1)
@@ -172,17 +189,30 @@ def create_results_dictionary(dataframe):
             first_close_brackets = column_name.find("]")
             second_close_brackets = column_name.find("]", first_close_brackets + 1)
 
-            edge_name = column_name[first_open_parentheses + 1: second_open_parentheses - 1].strip()
+            edge_name = column_name[
+                first_open_parentheses + 1 : second_open_parentheses - 1
+            ].strip()
 
-            unit_name = column_name[second_open_brackets + 1: second_close_brackets].strip()
+            unit_name = column_name[
+                second_open_brackets + 1 : second_close_brackets
+            ].strip()
 
-            probe_position_str = column_name[second_open_parentheses+1: first_open_brackets - 1].strip()
-            probe_position = probe_position_str.replace(',', '.')
+            probe_position_str = column_name[
+                second_open_parentheses + 1 : first_open_brackets - 1
+            ].strip()
+            probe_position = probe_position_str.replace(",", ".")
 
             results_dict[parametric_run].setdefault("time", np.array(time, dtype=float))
             results_dict[parametric_run].setdefault(edge_name, {})
-            results_dict[parametric_run][edge_name].setdefault(str(probe_position), {"position":float(probe_position)})
-            results_dict[parametric_run][edge_name][probe_position].setdefault(variable_name,{"unit": unit_name, "values":np.array(dataframe[column_name].tolist(), dtype=float)})
+            results_dict[parametric_run][edge_name].setdefault(
+                str(probe_position), {"position": float(probe_position)}
+            )
+            results_dict[parametric_run][edge_name][probe_position].setdefault(
+                variable_name,
+                {
+                    "unit": unit_name,
+                    "values": np.array(dataframe[column_name].tolist(), dtype=float),
+                },
+            )
 
     return results_dict
-
