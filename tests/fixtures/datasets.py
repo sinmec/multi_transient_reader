@@ -57,8 +57,9 @@ def merge_tabs_function(xls_file):
             axis=1,
         )
     dataframe.to_excel("temporary_file.xlsx", index=False)
-    excel_file = "temporary_file.xlsx"
+    excel_file = "temporary_file.xlsx"  # TODO: Fix it!
     dataframe = pd.read_excel(excel_file)
+    os.remove("temporary_file.xlsx")  # TODO: Fix it!
     return dataframe
 
 
