@@ -1,4 +1,7 @@
+import os
+
 import numpy as np
+import pandas as pd
 
 
 def get_variable_names(dataframe):
@@ -216,3 +219,24 @@ def create_results_dictionary(dataframe):
             )
 
     return results_dict
+
+
+def merge_tabs(xls_file):
+    xls = pd.ExcelFile(xls_file)
+    dataframe = pd.DataFrame()
+
+    for sheet_name in xls.sheet_names:
+        df = xls.parse(sheet_name, decimal=",")
+        dataframe = pd.concat(
+            [dataframe, df],
+            axis=1,
+        )
+    dataframe.to_excel("temporary_file.xlsx", index=False)
+    excel_file = "temporary_file.xlsx"  # TODO: Fix it!
+    dataframe = pd.read_excel(excel_file)
+    os.remove("temporary_file.xlsx")  # TODO: Fix it!
+    return dataframe
+
+
+def read_alfasim_xls_trend_file(xls_file):
+    return create_results_dictionary(merge_tabs(xls_file))
