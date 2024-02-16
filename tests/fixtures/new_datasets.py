@@ -13,14 +13,12 @@ def alfasim_file_trends_export():
     )
 
     return {
-        "dataframe": merge_tabs(xls_file),
-        "variable_names": sorted(
-            ["Time", "Absolute Pressure", "Holdup", "Total Oil Mass Flow Rate"]
-        ),
-        "edge_names": ["Conn 1", "Conn 2"],
-        "probe_positions": ([5, 7.98, 10, 14.33, 22.63]),
-        "units": sorted(["s", "Pa", "m3/m3", "kg/s"]),  # TODO: Sort this data struct
-        "parametric_runs": ["0", "1"],
+        "dataframe": "main_folder", #TODO Change the base data format of "dataframe"
+        "variable_names": sorted(['Flow Pattern', 'Pressure', 'Holdup', 'Time']),
+        "edge_names": ["Conn 1", "Conn 2","Conn 3"],
+        "probe_positions": {'Conn 1': ['18', '7'], 'Conn 2': ['25'], 'Conn 3': ['500']},
+        "units": sorted(['-', 'Pa', 's']),  # TODO: Sort this data struct
+        "parametric_runs": ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],
         "results": {
             "0": {
                 "Conn 1": {
@@ -367,7 +365,6 @@ def alfasim_file_trends_export():
                     "500": {
                         "position": 500.0,
                         "Flow Pattern": {
-                            "values": array([3.0, 3.0, 3.0, 3.0, 3.0]),
                             "unit": "-",
                         },
                         "Holdup": {"unit": "-"},

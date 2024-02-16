@@ -121,7 +121,7 @@ def create_result_profile_dictionary(main_folder):
     return results_dict_profile
 
 def get_trends_variable_name(main_folder):
-    trends_variable_names = []
+    trends_variable_names = ["Time"]
 
     for xls in os.listdir(main_folder):
         print(xls)
@@ -144,10 +144,10 @@ def get_trends_variable_name(main_folder):
                     else:
                         continue
 
-    return set(trends_variable_names)
+    return list(set(trends_variable_names))
 
 def get_trends_variable_number(main_folder):
-    trends_variable_names = []
+    trends_variable_names = ["Time"]
 
     for xls in os.listdir(main_folder):
         print(xls)
@@ -197,7 +197,7 @@ def get_profile_variable_name(main_folder):
                     else:
                         continue
 
-    return profile_variable_names
+    return set(profile_variable_names)
 
 def get_profile_variable_number(main_folder):
     profile_variable_names = []
@@ -290,6 +290,32 @@ def get_number_of_trends_points(main_folder):
         trends_number_position_points[edge] = len(trends_number_position_points[edge])
     return trends_number_position_points
 
-a = (create_result_trend_dictionary(main_folder))
-b = print(dict(sorted(a.items(), key=lambda item: int(item[0]))))
+def get_trends_variable_units(main_folder):
+    trends_units_names = ["s"]
+
+    for xls in os.listdir(main_folder):
+        print(xls)
+
+        if xls.endswith('.xls'):
+            xls_file = Path(main_folder, xls)
+            excel_file = pd.ExcelFile(xls_file)
+            abas = excel_file.sheet_names
+
+            if "Global" in xls or "profile" in xls:
+                continue
+
+            if "trend" in xls:
+                for aba in abas:
+                    df = pd.read_excel(xls_file, sheet_name=aba, header=None, decimal=',')
+                    unit = df.iloc[2, 1]
+
+                    if unit not in trends_units_names:
+                        trends_units_names.append(unit)
+
+
+
+    return sorted(set(trends_units_names))
+
+a = print(get_trends_variable_units(main_folder))
+
 aa=2
