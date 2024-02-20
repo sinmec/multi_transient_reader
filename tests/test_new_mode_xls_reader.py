@@ -1,12 +1,12 @@
 import pytest
 
-from tests.fixtures.new_datasets import alfasim_file_excel_results
 from src.xls_reader.new_mode_xls_reader import (
     create_result_trend_dictionary,
     get_trends_variable_name,
     get_trends_variable_number,
     get_position_of_trends_points,
 )
+from tests.fixtures.new_datasets import alfasim_file_excel_results
 
 
 def test_create_result_trend_dictionary(alfasim_file_excel_results):
