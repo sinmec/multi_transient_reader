@@ -4,13 +4,13 @@ import re
 
 import pandas as pd
 
-main_folder = Path(r'C:\Users\Gustavo\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC\ALFASIM\caso_com_varias_edges\casos_paramétricos.excel_results')
+from tests.fixtures.new_datasets import alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results
+main_folder =Path(r'C:\Users\Gustavo\Documentos\Engenharia Mecânica - UFSC\Iniciação Cientica - SINMEC\multi_transient_reader\tests\data\data_from_export\two_edges_heterogeneous_data_and_parametric_run.excel_results')
 
 def create_result_trend_dictionary(main_folder):
     results_dict_trends = {}
 
     for xls in os.listdir(main_folder):
-        print(xls)
 
         if xls.endswith('.xls'):
             xls_file = Path(main_folder, xls)
@@ -63,11 +63,11 @@ def create_result_trend_dictionary(main_folder):
 
     return results_dict_trends
 
-def create_result_profile_dictionary(main_folder):
+def create_result_profile_dictionary(main_folder): #TODO Verify with Rafael and take the test
     results_dict_profile = {}
 
     for xls in os.listdir(main_folder):
-        print(xls)
+
 
         if xls.endswith('.xls'):
             xls_file = Path(main_folder, xls)
@@ -121,10 +121,10 @@ def create_result_profile_dictionary(main_folder):
     return results_dict_profile
 
 def get_trends_variable_name(main_folder):
-    trends_variable_names = ["Time"]
+    trends_variable_names = {}
 
     for xls in os.listdir(main_folder):
-        print(xls)
+
 
         if xls.endswith('.xls'):
             xls_file = Path(main_folder, xls)
@@ -135,22 +135,35 @@ def get_trends_variable_name(main_folder):
                 continue
 
             elif "trend" in xls:
+
+                if "Base Run" in xls:
+                    trends_name_structure_file = re.match(
+                        r'trend-(\w+ \d+) \(([\d,]+) \[(\w+)\]\)-([\w\s]+)-(\d{4}-\d{2}-\d{2})-T(\d{2}-\d{2}-\d{2})',
+                        xls)
+                else:
+                    trends_name_structure_file = re.match(
+                        r'trend-([\w ]+ \d+) \(([\d,]+) \[(\w+)\]\)-#(\d+)-(\d{4}-\d{2}-\d{2})-T(\d{2}-\d{2}-\d{2})',
+                        xls)
+
+                edge = trends_name_structure_file.group(1)
+
                 for aba in abas:
                     df = pd.read_excel(xls_file, sheet_name=aba, header=None, decimal=',')
                     variable = df.iloc[0, 1].title()
 
-                    if variable not in trends_variable_names:
-                        trends_variable_names.append(variable)
-                    else:
-                        continue
+                    if f'{edge}' not in trends_variable_names:
+                        trends_variable_names[f'{edge}'] = ["Time"]
 
-    return list(set(trends_variable_names))
+                    if variable not in trends_variable_names[f'{edge}']:
+                        trends_variable_names[f'{edge}'].append(variable)
+
+    return sorted(list(set(item for sublist in trends_variable_names.values() for item in sublist)))
 
 def get_trends_variable_number(main_folder):
-    trends_variable_names = ["Time"]
+    trends_variable_names = {}
 
     for xls in os.listdir(main_folder):
-        print(xls)
+
 
         if xls.endswith('.xls'):
             xls_file = Path(main_folder, xls)
@@ -161,22 +174,35 @@ def get_trends_variable_number(main_folder):
                 continue
 
             elif "trend" in xls:
+
+                if "Base Run" in xls:
+                    trends_name_structure_file = re.match(
+                        r'trend-(\w+ \d+) \(([\d,]+) \[(\w+)\]\)-([\w\s]+)-(\d{4}-\d{2}-\d{2})-T(\d{2}-\d{2}-\d{2})',
+                        xls)
+                else:
+                    trends_name_structure_file = re.match(
+                        r'trend-([\w ]+ \d+) \(([\d,]+) \[(\w+)\]\)-#(\d+)-(\d{4}-\d{2}-\d{2})-T(\d{2}-\d{2}-\d{2})',
+                        xls)
+
+                edge = trends_name_structure_file.group(1)
+
                 for aba in abas:
                     df = pd.read_excel(xls_file, sheet_name=aba, header=None, decimal=',')
                     variable = df.iloc[0, 1].title()
 
-                    if variable not in trends_variable_names:
-                        trends_variable_names.append(variable)
-                    else:
-                        continue
+                    if f'{edge}' not in trends_variable_names:
+                        trends_variable_names[f'{edge}'] = ["Time"]
 
-    return len(set(trends_variable_names))
+                    if variable not in trends_variable_names[f'{edge}']:
+                        trends_variable_names[f'{edge}'].append(variable)
 
-def get_profile_variable_name(main_folder):
+    return len(sorted(list(set(item for sublist in trends_variable_names.values() for item in sublist))))
+
+def get_profile_variable_name(main_folder): #TODO Verigy with Rafael
     profile_variable_names = []
 
     for xls in os.listdir(main_folder):
-        print(xls)
+
 
         if xls.endswith('.xls'):
             xls_file = Path(main_folder, xls)
@@ -199,11 +225,11 @@ def get_profile_variable_name(main_folder):
 
     return set(profile_variable_names)
 
-def get_profile_variable_number(main_folder):
+def get_profile_variable_number(main_folder):#TODO Verigy with Rafael
     profile_variable_names = []
 
     for xls in os.listdir(main_folder):
-        print(xls)
+
 
         if xls.endswith('.xls'):
             xls_file = Path(main_folder, xls)
@@ -230,7 +256,6 @@ def get_position_of_trends_points(main_folder):
     trends_position_points = {}
 
     for xls in os.listdir(main_folder):
-        print(xls)
 
         if xls.endswith('.xls'):
 
@@ -255,13 +280,14 @@ def get_position_of_trends_points(main_folder):
                 if position not in trends_position_points[edge]:
                     trends_position_points[edge].append(position)
 
+
     return trends_position_points
 
 def get_number_of_trends_points(main_folder):
     trends_number_position_points = {}
 
     for xls in os.listdir(main_folder):
-        print(xls)
+
 
         if xls.endswith('.xls'):
 
@@ -294,7 +320,7 @@ def get_trends_variable_units(main_folder):
     trends_units_names = ["s"]
 
     for xls in os.listdir(main_folder):
-        print(xls)
+
 
         if xls.endswith('.xls'):
             xls_file = Path(main_folder, xls)
@@ -316,6 +342,5 @@ def get_trends_variable_units(main_folder):
 
     return sorted(set(trends_units_names))
 
-a = print(get_trends_variable_units(main_folder))
-
-aa=2
+a= create_result_trend_dictionary(main_folder)
+b=3
