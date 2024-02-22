@@ -280,6 +280,8 @@ def get_position_of_trends_points(main_folder):
                 if position not in trends_position_points[edge]:
                     trends_position_points[edge].append(position)
 
+    for edge, positions in trends_position_points.items():
+        trends_position_points[edge] = sorted(positions, key=lambda x: float(x))
 
     return trends_position_points
 
@@ -342,5 +344,7 @@ def get_trends_variable_units(main_folder):
 
     return sorted(set(trends_units_names))
 
-a= create_result_trend_dictionary(main_folder)
+a= get_position_of_trends_points(main_folder)
+print(a)
+
 b=3
