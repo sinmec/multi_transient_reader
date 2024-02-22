@@ -55,7 +55,10 @@ def alfasim_file_single_edge_homogeneous_data():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/data_from_figure/alfasim_file_single_edge_homogeneous_data.xlsx")
+    xls_file = Path(
+        file_path,
+        "../data/data_from_figure/alfasim_file_single_edge_homogeneous_data.xlsx",
+    )
 
     return {
         "dataframe": merge_tabs(xls_file),
@@ -240,7 +243,10 @@ def alfasim_file_two_edges_homogeneous_data():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/data_from_figure/alfasim_file_two_edges_homogeneous_data.xlsx")
+    xls_file = Path(
+        file_path,
+        "../data/data_from_figure/alfasim_file_two_edges_homogeneous_data.xlsx",
+    )
 
     return {
         "dataframe": merge_tabs(xls_file),
@@ -391,7 +397,10 @@ def alfasim_file_two_edges_heterogeneous_data():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
     file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/data_from_figure/alfasim_file_two_edges_heterogeneous_data.xlsx")
+    xls_file = Path(
+        file_path,
+        "../data/data_from_figure/alfasim_file_two_edges_heterogeneous_data.xlsx",
+    )
 
     return {
         "dataframe": merge_tabs(xls_file),

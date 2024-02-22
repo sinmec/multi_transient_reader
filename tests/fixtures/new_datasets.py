@@ -12,24 +12,45 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
 
-    folder_path = os.path.join("data","data_from_export","three_edges_heterogenous_data_and_parametric_run.excel_results")
+    folder_path = os.path.join(
+        "data",
+        "data_from_export",
+        "three_edges_heterogenous_data_and_parametric_run.excel_results",
+    )
 
     return {
-        "file": folder_path , #TODO Verify with Rafael
-        "variable_names": sorted(['Flow Pattern', 'Pressure', 'Holdup', 'Time']),
-        "edge_names": ["Conn 1", "Conn 2","Conn 3"],
-        "probe_positions": {'Conn 1': ['18', '7'], 'Conn 2': ['25'], 'Conn 3': ['500']},
-        "units": sorted(['-', 'Pa', 's']),
-        "parametric_runs": ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],
+        "file": folder_path,  # TODO Verify with Rafael
+        "variable_names": sorted(["Flow Pattern", "Pressure", "Holdup", "Time"]),
+        "edge_names": ["Conn 1", "Conn 2", "Conn 3"],
+        "probe_positions": {"Conn 1": ["7", "18"], "Conn 2": ["25"], "Conn 3": ["500"]},
+        "units": sorted(["-", "Pa", "s"]),
+        "parametric_runs": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+        ],
         "results": {
             "0": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -49,12 +70,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "1": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -74,12 +95,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "2": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -99,12 +120,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "3": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -124,12 +145,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "4": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -149,12 +170,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "5": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -174,12 +195,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "6": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -199,12 +220,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "7": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -224,12 +245,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "8": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -249,12 +270,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "9": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -274,12 +295,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "10": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -299,12 +320,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "11": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -324,12 +345,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "12": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -349,12 +370,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "13": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -376,12 +397,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "14": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -401,12 +422,12 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
             },
             "15": {
                 "Conn 1": {
-                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                     "7": {
                         "position": 7.0,
                         "Holdup": {"unit": "-"},
                         "Pressure": {"unit": "Pa"},
                     },
+                    "18": {"position": 18.0, "Pressure": {"unit": "Pa"}},
                 },
                 "Conn 2": {
                     "25": {
@@ -427,6 +448,7 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
         },
     }
 
+
 def alfasim_file_single_edge_homogeneous_data_excel_results():
     """
     This fixture contains a dataset with a single edge, multiple probe positions and no parametric run.
@@ -435,16 +457,36 @@ def alfasim_file_single_edge_homogeneous_data_excel_results():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
 
-
-    folder_path = os.path.join("data","data_from_export","single_edge_homogeneous_data.excel_results")
+    folder_path = os.path.join(
+        "data", "data_from_export", "single_edge_homogeneous_data.excel_results"
+    )
 
     return {
         "file": folder_path,
         "variable_names": sorted(["Time", "Pressure", "Holdup"]),
         "edge_names": ["Conn 1"],
-        "probe_positions": {"Conn 1":
-            ["1", "1.5", "2","2.5", "3","3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5"]
-                            },
+        "probe_positions": {
+            "Conn 1": [
+                "1",
+                "1.5",
+                "2",
+                "2.5",
+                "3",
+                "3.5",
+                "4",
+                "4.5",
+                "5",
+                "5.5",
+                "6",
+                "6.5",
+                "7",
+                "7.5",
+                "8",
+                "8.5",
+                "9",
+                "9.5",
+            ]
+        },
         "units": sorted(["s", "Pa", "-"]),
         "parametric_run": ["0"],  # TODO: Sort this data struct
         "results": {
@@ -545,6 +587,7 @@ def alfasim_file_single_edge_homogeneous_data_excel_results():
         },
     }
 
+
 def alfasim_file_single_edge_homogeneous_data_and_parametric_run_excel_results():
     """
     This fixture contains a dataset with a single edge, multiple probe positions and parametric run.
@@ -553,15 +596,17 @@ def alfasim_file_single_edge_homogeneous_data_and_parametric_run_excel_results()
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
 
-
-    folder_path = os.path.join("data","data_from_export","single_edge_homogeneous_data_and_parametric_run.excel_results")
-
+    folder_path = os.path.join(
+        "data",
+        "data_from_export",
+        "single_edge_homogeneous_data_and_parametric_run.excel_results",
+    )
 
     return {
         "file": folder_path,
         "variable_names": sorted(["Time", "Pressure", "Holdup"]),
         "edge_names": ["Conn 1"],
-        "probe_positions": {"Conn 1" : ["1", "1.5"]},
+        "probe_positions": {"Conn 1": ["1", "1.5"]},
         "units": sorted(["s", "Pa", "-"]),  # TODO: Sort this data struct
         "parametric_run": ["0", "1", "2"],
         "results": {
@@ -609,6 +654,7 @@ def alfasim_file_single_edge_homogeneous_data_and_parametric_run_excel_results()
             },
         },
     }
+
 
 def alfasim_file_two_edges_homogeneous_data_excel_results():
     """
@@ -618,26 +664,36 @@ def alfasim_file_two_edges_homogeneous_data_excel_results():
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
 
-
-    folder_path = os.path.join("data","data_from_export","two_edges_homogeneous_data.excel_results")
+    folder_path = os.path.join(
+        "data", "data_from_export", "two_edges_homogeneous_data.excel_results"
+    )
 
     return {
         "file": folder_path,
         "variable_names": sorted(["Time", "Pressure", "Holdup"]),
         "edge_names": ["Conn 1", "Conn 2"],
-        "probe_positions": {"Conn 1":["22.63",  '7.98'],"Conn 2":["10","5"]},
+        "probe_positions": {
+            "Conn 1": [
+                "7.98",
+                "22.63",
+            ],
+            "Conn 2": [
+                "5",
+                "10",
+            ],
+        },
         "units": sorted(["s", "Pa", "-"]),
         "parametric_run": ["0"],  # TODO: Sort this data struct
         "results": {
             "0": {
                 "Conn 1": {
-                    "22.63": {
-                        "position": 22.63,
+                    "7.98": {
+                        "position": 7.98,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
                     },
-                    "7.98": {
-                        "position": 7.98,
+                    "22.63": {
+                        "position": 22.63,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
                     },
@@ -658,34 +714,47 @@ def alfasim_file_two_edges_homogeneous_data_excel_results():
         },
     }
 
+
 def alfasim_file_two_edges_homogeneous_data_and_parametric_run_excel_results():
     """
     This fixture contains a dataset with two edges, multiple probe positions and parametric run.
     The probe positions are homogeneous, i.e., have the exact variables at the same points.
     """
 
-    #TODO: Find an elegant way using pytest tools to remove this gambiarra
+    # TODO: Find an elegant way using pytest tools to remove this gambiarra
 
-
-    folder_path = os.path.join("data","data_from_export","two_edges_homogeneous_data_and_parametric_run.excel_results")
+    folder_path = os.path.join(
+        "data",
+        "data_from_export",
+        "two_edges_homogeneous_data_and_parametric_run.excel_results",
+    )
 
     return {
         "file": folder_path,
         "variable_names": sorted(["Time", "Pressure", "Holdup"]),
         "edge_names": ["Conn 1", "Conn 2"],
-        "probe_positions":  {'Conn 1': ['22.63', '7.98'], 'Conn 2': ['10', '5']},
+        "probe_positions": {
+            "Conn 1": [
+                "7.98",
+                "22.63",
+            ],
+            "Conn 2": [
+                "5",
+                "10",
+            ],
+        },
         "units": sorted(["s", "Pa", "-"]),  # TODO: Sort this data struct
         "parametric_run": ["0", "1", "2"],
         "results": {
             "0": {
                 "Conn 1": {
-                    "22.63": {
-                        "position": 22.63,
+                    "7.98": {
+                        "position": 7.98,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
                     },
-                    "7.98": {
-                        "position": 7.98,
+                    "22.63": {
+                        "position": 22.63,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
                     },
@@ -705,13 +774,13 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run_excel_results():
             },
             "1": {
                 "Conn 1": {
-                    "22.63": {
-                        "position": 22.63,
+                    "7.98": {
+                        "position": 7.98,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
                     },
-                    "7.98": {
-                        "position": 7.98,
+                    "22.63": {
+                        "position": 22.63,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
                     },
@@ -731,13 +800,13 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run_excel_results():
             },
             "2": {
                 "Conn 1": {
-                    "22.63": {
-                        "position": 22.63,
+                    "7.98": {
+                        "position": 7.98,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
                     },
-                    "7.98": {
-                        "position": 7.98,
+                    "22.63": {
+                        "position": 22.63,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
                     },
@@ -757,6 +826,7 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run_excel_results():
             },
         },
     }
+
 
 def alfasim_file_two_edges_heterogeneous_data_excel_results():
     """
@@ -765,7 +835,9 @@ def alfasim_file_two_edges_heterogeneous_data_excel_results():
     """
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
-    folder_path = os.path.join("data","data_from_export","two_edges_heterogeneous_data.excel_results")
+    folder_path = os.path.join(
+        "data", "data_from_export", "two_edges_heterogeneous_data.excel_results"
+    )
 
     return {
         "file": folder_path,
@@ -773,16 +845,22 @@ def alfasim_file_two_edges_heterogeneous_data_excel_results():
             ["Time", "Pressure", "Holdup", "Total Oil Mass Flow Rate"]
         ),
         "edge_names": ["Conn 1", "Conn 2"],
-        "probe_positions": {'Conn 1': ['14.33', '22.63', '7.98'], 'Conn 2': ['10', '5']},
+        "probe_positions": {
+            "Conn 1": [
+                "7.98",
+                "14.33",
+                "22.63",
+            ],
+            "Conn 2": [
+                "5",
+                "10",
+            ],
+        },
         "units": sorted(["s", "Pa", "-", "kg/s"]),
         "parametric_run": ["0"],
         "results": {
             "0": {
                 "Conn 1": {
-                    "22.63": {
-                        "position": 22.63,
-                        "Pressure": {"unit": "Pa"},
-                    },
                     "7.98": {
                         "position": 7.98,
                         "Holdup": {"unit": "-"},
@@ -792,6 +870,10 @@ def alfasim_file_two_edges_heterogeneous_data_excel_results():
                         "position": 14.33,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
+                    },
+                    "22.63": {
+                        "position": 22.63,
+                        "Pressure": {"unit": "Pa"},
                     },
                 },
                 "Conn 2": {
@@ -812,6 +894,7 @@ def alfasim_file_two_edges_heterogeneous_data_excel_results():
         },
     }
 
+
 def alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results():
     """
     This fixture contains a dataset with two edges, multiple probe positions and parametric run.
@@ -819,8 +902,11 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results()
     """
 
     # TODO: Find an elegant way using pytest tools to remove this gambiarra
-    folder_path = os.path.join("data","data_from_export","two_edges_heterogeneous_data_and_parametric_run.excel_results")
-
+    folder_path = os.path.join(
+        "data",
+        "data_from_export",
+        "two_edges_heterogeneous_data_and_parametric_run.excel_results",
+    )
 
     return {
         "file": folder_path,
@@ -828,16 +914,22 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results()
             ["Time", "Pressure", "Holdup", "Total Oil Mass Flow Rate"]
         ),
         "edge_names": ["Conn 1", "Conn 2"],
-        "probe_positions": {'Conn 1': ['14.33', '22.63', '7.98'], 'Conn 2': ['10', '5']},
+        "probe_positions": {
+            "Conn 1": [
+                "7.98",
+                "14.33",
+                "22.63",
+            ],
+            "Conn 2": [
+                "5",
+                "10",
+            ],
+        },
         "units": sorted(["s", "Pa", "-", "kg/s"]),  # TODO: Sort this data struct
         "parametric_runs": ["0", "1"],
         "results": {
             "0": {
                 "Conn 1": {
-                    "22.63": {
-                        "position": 22.63,
-                        "Pressure": {"unit": "Pa"},
-                    },
                     "7.98": {
                         "position": 7.98,
                         "Holdup": {"unit": "-"},
@@ -847,6 +939,10 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results()
                         "position": 14.33,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
+                    },
+                    "22.63": {
+                        "position": 22.63,
+                        "Pressure": {"unit": "Pa"},
                     },
                 },
                 "Conn 2": {
@@ -866,10 +962,6 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results()
             },
             "1": {
                 "Conn 1": {
-                    "22.63": {
-                        "position": 22.63,
-                        "Pressure": {"unit": "Pa"},
-                    },
                     "7.98": {
                         "position": 7.98,
                         "Holdup": {"unit": "-"},
@@ -879,6 +971,10 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results()
                         "position": 14.33,
                         "Pressure": {"unit": "Pa"},
                         "Holdup": {"unit": "-"},
+                    },
+                    "22.63": {
+                        "position": 22.63,
+                        "Pressure": {"unit": "Pa"},
                     },
                 },
                 "Conn 2": {
@@ -898,6 +994,8 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results()
             },
         },
     }
+
+
 @pytest.fixture(
     params=[
         alfasim_file_single_edge_homogeneous_data_excel_results(),
@@ -911,5 +1009,3 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results()
 )
 def alfasim_file_excel_results(request):
     return request.param
-
-
