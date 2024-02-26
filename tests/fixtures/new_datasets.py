@@ -15,8 +15,11 @@ def alfasim_file_three_edges_heterogenous_data_and_parametric_run_excel_results(
     folder_path = os.path.join("data","data_from_export","three_edges_heterogenous_data_and_parametric_run.excel_results")
 
     return {
-        "file": folder_path , #TODO Verify with Rafael
-        "variable_names": sorted(['Flow Pattern', 'Pressure', 'Holdup', 'Time']),
+        "file": folder_path ,
+        "variable_names": {'Conn 1': ['Holdup', 'Pressure', 'Time'],
+ 'Conn 2': ['Time','Flow Pattern', 'Pressure'],
+ 'Conn 3': ['Time','Flow Pattern', 'Holdup', 'Pressure']}
+,
         "edge_names": ["Conn 1", "Conn 2","Conn 3"],
         "probe_positions": {'Conn 1': ['18', '7'], 'Conn 2': ['25'], 'Conn 3': ['500']},
         "units": sorted(['-', 'Pa', 's']),
@@ -440,7 +443,7 @@ def alfasim_file_single_edge_homogeneous_data_excel_results():
 
     return {
         "file": folder_path,
-        "variable_names": sorted(["Time", "Pressure", "Holdup"]),
+        "variable_names": {'Conn 1': ['Holdup', 'Pressure', 'Time']},
         "edge_names": ["Conn 1"],
         "probe_positions": {"Conn 1":
             ["1", "1.5", "2","2.5", "3","3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5"]
@@ -559,7 +562,7 @@ def alfasim_file_single_edge_homogeneous_data_and_parametric_run_excel_results()
 
     return {
         "file": folder_path,
-        "variable_names": sorted(["Time", "Pressure", "Holdup"]),
+        "variable_names":{'Conn 1': ['Holdup', 'Pressure', 'Time']},
         "edge_names": ["Conn 1"],
         "probe_positions": {"Conn 1" : ["1", "1.5"]},
         "units": sorted(["s", "Pa", "-"]),  # TODO: Sort this data struct
@@ -623,7 +626,8 @@ def alfasim_file_two_edges_homogeneous_data_excel_results():
 
     return {
         "file": folder_path,
-        "variable_names": sorted(["Time", "Pressure", "Holdup"]),
+        "variable_names": {'Conn 1': ['Holdup', 'Pressure', 'Time'],
+ 'Conn 2': ['Holdup', 'Pressure', 'Time']},
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": {"Conn 1":["22.63",  '7.98'],"Conn 2":["10","5"]},
         "units": sorted(["s", "Pa", "-"]),
@@ -671,7 +675,8 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run_excel_results():
 
     return {
         "file": folder_path,
-        "variable_names": sorted(["Time", "Pressure", "Holdup"]),
+        "variable_names": {'Conn 1': ['Holdup', 'Pressure', 'Time'],
+ 'Conn 2': ['Holdup', 'Pressure', 'Time']},
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions":  {'Conn 1': ['22.63', '7.98'], 'Conn 2': ['10', '5']},
         "units": sorted(["s", "Pa", "-"]),  # TODO: Sort this data struct
@@ -769,9 +774,8 @@ def alfasim_file_two_edges_heterogeneous_data_excel_results():
 
     return {
         "file": folder_path,
-        "variable_names": sorted(
-            ["Time", "Pressure", "Holdup", "Total Oil Mass Flow Rate"]
-        ),
+        "variable_names": {'Conn 1': ['Holdup', 'Pressure', 'Time', 'Total Oil Mass Flow Rate'],
+ 'Conn 2': ['Holdup', 'Pressure', 'Time', 'Total Oil Mass Flow Rate']},
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": {'Conn 1': ['14.33', '22.63', '7.98'], 'Conn 2': ['10', '5']},
         "units": sorted(["s", "Pa", "-", "kg/s"]),
@@ -824,9 +828,8 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run_excel_results()
 
     return {
         "file": folder_path,
-        "variable_names": sorted(
-            ["Time", "Pressure", "Holdup", "Total Oil Mass Flow Rate"]
-        ),
+        "variable_names":{'Conn 1': ['Holdup', 'Pressure', 'Time', 'Total Oil Mass Flow Rate'],
+ 'Conn 2': ['Holdup', 'Pressure', 'Time', 'Total Oil Mass Flow Rate']},
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": {'Conn 1': ['14.33', '22.63', '7.98'], 'Conn 2': ['10', '5']},
         "units": sorted(["s", "Pa", "-", "kg/s"]),  # TODO: Sort this data struct
