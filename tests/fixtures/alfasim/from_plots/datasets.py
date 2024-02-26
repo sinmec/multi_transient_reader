@@ -1,10 +1,9 @@
 import os
 import random
-from pathlib import Path
 
 import pytest
 
-from src.xls_reader.xls_reader import merge_tabs
+from src.xls_reader.alfasim.from_plots.xls_reader import merge_tabs
 
 
 def shuffle_dataframe(dataframe):
@@ -53,9 +52,15 @@ def alfasim_file_single_edge_homogeneous_data():
     The probe positions are homogeneous, i.e., have the exact variables at the same points..
     """
 
-    # TODO: Find an elegant way using pytest tools to remove this gambiarra
-    file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/data_from_figure/alfasim_file_single_edge_homogeneous_data.xlsx")
+    xls_file = os.path.join(
+        "..",
+        "..",
+        "..",
+        "data",
+        "alfasim",
+        "from_plots",
+        "alfasim_file_single_edge_homogeneous_data.xlsx",
+    )
 
     return {
         "dataframe": merge_tabs(xls_file),
@@ -65,7 +70,7 @@ def alfasim_file_single_edge_homogeneous_data():
             [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8.0, 8.5, 9, 9.5]
         ),
         "units": sorted(["s", "bar", "m3/m3"]),
-        "parametric_run": ["0"],  # TODO: Sort this data struct
+        "parametric_run": ["0"],
         "results": {
             "0": {
                 "Conn 1": {
@@ -171,11 +176,14 @@ def alfasim_file_single_edge_homogeneous_data_and_parametric_run():
     The probe positions are homogeneous, i.e., have the exact variables at the same points..
     """
 
-    # TODO: Find an elegant way using pytest tools to remove this gambiarra
-    file_path = os.path.dirname(__file__)
-    xls_file = Path(
-        file_path,
-        "../data/data_from_figure/alfasim_file_single_edge_homogeneous_data_and_parametric_run.xlsx",
+    xls_file = os.path.join(
+        "..",
+        "..",
+        "..",
+        "data",
+        "alfasim",
+        "from_plots",
+        "alfasim_file_single_edge_homogeneous_data_and_parametric_run.xlsx",
     )
 
     return {
@@ -183,7 +191,7 @@ def alfasim_file_single_edge_homogeneous_data_and_parametric_run():
         "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
         "edge_names": ["Conn 1"],
         "probe_positions": ([1, 1.5]),
-        "units": sorted(["s", "bar", "m3/m3"]),  # TODO: Sort this data struct
+        "units": sorted(["s", "bar", "m3/m3"]),
         "parametric_run": ["0", "1", "2"],
         "results": {
             "0": {
@@ -238,9 +246,15 @@ def alfasim_file_two_edges_homogeneous_data():
     The probe positions are homogeneous, i.e., have the exact variables at the same points.
     """
 
-    # TODO: Find an elegant way using pytest tools to remove this gambiarra
-    file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/data_from_figure/alfasim_file_two_edges_homogeneous_data.xlsx")
+    xls_file = os.path.join(
+        "..",
+        "..",
+        "..",
+        "data",
+        "alfasim",
+        "from_plots",
+        "alfasim_file_two_edges_homogeneous_data.xlsx",
+    )
 
     return {
         "dataframe": merge_tabs(xls_file),
@@ -248,7 +262,7 @@ def alfasim_file_two_edges_homogeneous_data():
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 22.63]),
         "units": sorted(["s", "bar", "m3/m3"]),
-        "parametric_run": ["0"],  # TODO: Sort this data struct
+        "parametric_run": ["0"],
         "results": {
             "0": {
                 "Conn 1": {
@@ -286,11 +300,14 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run():
     The probe positions are homogeneous, i.e., have the exact variables at the same points.
     """
 
-    # TODO: Find an elegant way using pytest tools to remove this gambiarra
-    file_path = os.path.dirname(__file__)
-    xls_file = Path(
-        file_path,
-        "../data/data_from_figure/alfasim_file_two_edges_homogeneous_data_and_parametric_run.xlsx",
+    xls_file = os.path.join(
+        "..",
+        "..",
+        "..",
+        "data",
+        "alfasim",
+        "from_plots",
+        "alfasim_file_two_edges_homogeneous_data_and_parametric_run.xlsx",
     )
 
     return {
@@ -298,7 +315,7 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run():
         "variable_names": sorted(["Time", "Absolute Pressure", "Holdup"]),
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 22.63]),
-        "units": sorted(["s", "bar", "m3/m3"]),  # TODO: Sort this data struct
+        "units": sorted(["s", "bar", "m3/m3"]),
         "parametric_run": ["0", "1", "2"],
         "results": {
             "0": {
@@ -389,9 +406,15 @@ def alfasim_file_two_edges_heterogeneous_data():
     The probe positions are heterogeneous, i.e., each probe point save a different set of variables.
     """
 
-    # TODO: Find an elegant way using pytest tools to remove this gambiarra
-    file_path = os.path.dirname(__file__)
-    xls_file = Path(file_path, "../data/data_from_figure/alfasim_file_two_edges_heterogeneous_data.xlsx")
+    xls_file = os.path.join(
+        "..",
+        "..",
+        "..",
+        "data",
+        "alfasim",
+        "from_plots",
+        "alfasim_file_two_edges_heterogeneous_data.xlsx",
+    )
 
     return {
         "dataframe": merge_tabs(xls_file),
@@ -401,7 +424,7 @@ def alfasim_file_two_edges_heterogeneous_data():
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 14.33, 22.63]),
         "units": sorted(["s", "bar", "m3/m3", "kg/s"]),
-        "parametric_run": ["0"],  # TODO: Sort this data struct
+        "parametric_run": ["0"],
         "results": {
             "0": {
                 "Conn 1": {
@@ -445,11 +468,14 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
     The probe positions are heterogeneous, i.e., each probe point save a different set of variables.
     """
 
-    # TODO: Find an elegant way using pytest tools to remove this gambiarra
-    file_path = os.path.dirname(__file__)
-    xls_file = Path(
-        file_path,
-        "../data/data_from_figure/alfasim_file_two_edges_heterogeneous_data_and_parametric_run.xlsx",
+    xls_file = os.path.join(
+        "..",
+        "..",
+        "..",
+        "data",
+        "alfasim",
+        "from_plots",
+        "alfasim_file_two_edges_heterogeneous_data_and_parametric_run.xlsx",
     )
 
     return {
@@ -459,7 +485,7 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
         ),
         "edge_names": ["Conn 1", "Conn 2"],
         "probe_positions": ([5, 7.98, 10, 14.33, 22.63]),
-        "units": sorted(["s", "Pa", "m3/m3", "kg/s"]),  # TODO: Sort this data struct
+        "units": sorted(["s", "Pa", "m3/m3", "kg/s"]),
         "parametric_runs": ["0", "1"],
         "results": {
             "0": {

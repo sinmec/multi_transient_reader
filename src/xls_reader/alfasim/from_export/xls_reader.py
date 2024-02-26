@@ -82,6 +82,7 @@ def create_trend_result_dictionary(main_folder):
 
     return results_trend_dictionary
 
+
 def get_trend_variables_names(main_folder):
     """
     This function creates a dictionary with the edges and their respective variable measurements in each one.
@@ -125,7 +126,11 @@ def get_trend_variables_names(main_folder):
                     if variable not in trends_variable_names[f"{edge}"]:
                         trends_variable_names[f"{edge}"].append(variable)
 
-    return {key: sorted(set(values)) for key, values in sorted(trends_variable_names.items())}
+    return {
+        key: sorted(set(values))
+        for key, values in sorted(trends_variable_names.items())
+    }
+
 
 def get_trend_variables_number(main_folder):
     """
@@ -171,6 +176,7 @@ def get_trend_variables_number(main_folder):
 
     return {key: len(value) for key, value in trends_variable_names_number.items()}
 
+
 def get_trend_probes_position(main_folder):
     """
     This function associates the position where the variables are being measured in each edge.
@@ -203,7 +209,10 @@ def get_trend_probes_position(main_folder):
                 if position not in trend_probes_position[edge]:
                     trend_probes_position[edge].append(position)
 
-    return {key: sorted(set(value)) for key, value in sorted(trend_probes_position.items())}
+    return {
+        key: sorted(set(value)) for key, value in sorted(trend_probes_position.items())
+    }
+
 
 def get_trend_probes_position_number(main_folder):
     """
@@ -237,6 +246,7 @@ def get_trend_probes_position_number(main_folder):
                     trend_probes_position_number[edge].append(position)
 
     return {key: len(value) for key, value in trend_probes_position_number.items()}
+
 
 def get_trend_variables_units(main_folder):
     """

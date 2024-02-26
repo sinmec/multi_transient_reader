@@ -145,8 +145,6 @@ def get_variable_units(dataframe):
     return sorted(set(units_names))
 
 
-# TODO: When we implement a function to read the .xls(x) files
-#      , check if the the first column is 'Time[s]'
 def check_time_column(dataframe):
     return dataframe.keys()[0]
     assert dataframe.keys()[0] == "Time [s]"
@@ -232,9 +230,9 @@ def merge_tabs(xls_file):
             axis=1,
         )
     dataframe.to_excel("temporary_file.xlsx", index=False)
-    excel_file = "temporary_file.xlsx"  # TODO: Fix it!
+    excel_file = "temporary_file.xlsx"
     dataframe = pd.read_excel(excel_file)
-    os.remove("temporary_file.xlsx")  # TODO: Fix it!
+    os.remove("temporary_file.xlsx")
     return dataframe
 
 

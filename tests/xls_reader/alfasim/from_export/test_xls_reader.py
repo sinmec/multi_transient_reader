@@ -1,6 +1,6 @@
 import pytest
 
-from src.xls_reader.new_mode_xls_reader import (
+from src.xls_reader.alfasim.from_export.xls_reader import (
     create_trend_result_dictionary,
     get_trend_variables_names,
     get_trend_variables_number,
@@ -8,7 +8,7 @@ from src.xls_reader.new_mode_xls_reader import (
     get_trend_probes_position_number,
     get_trend_variables_units,
 )
-from tests.fixtures.new_datasets import alfasim_file_excel_results
+from tests.fixtures.alfasim.from_export.datasets import alfasim_file_excel_results
 
 
 def test_create_trend_result_dictionary(alfasim_file_excel_results):
@@ -41,21 +41,28 @@ def test_create_trend_result_dictionary(alfasim_file_excel_results):
 
 def test_get_trend_variables_names(alfasim_file_excel_results):
     variable_names = get_trend_variables_names(alfasim_file_excel_results["file"])
-    assert variable_names == {key: sorted(set(value)) for key, value in sorted((alfasim_file_excel_results["variable_names"]).items())}
+    assert variable_names == {
+        key: sorted(set(value))
+        for key, value in sorted((alfasim_file_excel_results["variable_names"]).items())
+    }
 
 
 def test_get_trend_variables_number(alfasim_file_excel_results):
-    variables_number = get_trend_variables_number(
-        alfasim_file_excel_results["file"]
-    )
+    variables_number = get_trend_variables_number(alfasim_file_excel_results["file"])
     assert variables_number == {
         key: len(value)
         for key, value in (alfasim_file_excel_results["variable_names"]).items()
     }
 
+
 def test_get_trend_probes_position(alfasim_file_excel_results):
     probes_position = get_trend_probes_position(alfasim_file_excel_results["file"])
-    assert probes_position == {key: sorted(set(value)) for key, value in sorted((alfasim_file_excel_results["probe_positions"]).items())}
+    assert probes_position == {
+        key: sorted(set(value))
+        for key, value in sorted(
+            (alfasim_file_excel_results["probe_positions"]).items()
+        )
+    }
 
 
 def test_get_trend_probes_position_number(alfasim_file_excel_results):
@@ -69,8 +76,5 @@ def test_get_trend_probes_position_number(alfasim_file_excel_results):
 
 
 def test_get_trend_variables_units(alfasim_file_excel_results):
-    variables_unit = get_trend_variables_units(
-        alfasim_file_excel_results["file"]
-    )
-    assert variables_unit == sorted(
-        alfasim_file_excel_results["units"])
+    variables_unit = get_trend_variables_units(alfasim_file_excel_results["file"])
+    assert variables_unit == sorted(alfasim_file_excel_results["units"])
