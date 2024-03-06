@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from src.statistical_tools.common_functions import (
+from statistical_tools.common_functions import (
     compute_temporal_average,
     compute_temporal_std,
 )

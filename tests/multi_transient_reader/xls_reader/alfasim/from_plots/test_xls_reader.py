@@ -1,6 +1,6 @@
 import pytest
 
-from src.xls_reader.alfasim.from_plots.xls_reader import (
+from alfasim.from_plots.xls_reader import (
     get_variable_names,
     get_number_of_variables,
     get_number_of_probes,
@@ -10,7 +10,7 @@ from src.xls_reader.alfasim.from_plots.xls_reader import (
     get_variable_units,
     create_results_dictionary,
 )
-from tests.fixtures.alfasim.from_plots.datasets import (
+from tests.multi_transient_reader.fixtures.alfasim.from_plots.datasets import (
     alfasim_file,
     shuffled_alfasim_files,
 )

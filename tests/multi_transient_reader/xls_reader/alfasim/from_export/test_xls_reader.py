@@ -1,6 +1,6 @@
 import pytest
 
-from src.xls_reader.alfasim.from_export.xls_reader import (
+from alfasim.from_export.xls_reader import (
     create_trend_result_dictionary,
     get_trend_variables_names,
     get_trend_variables_number,
@@ -8,7 +8,9 @@ from src.xls_reader.alfasim.from_export.xls_reader import (
     get_trend_probes_position_number,
     get_trend_variables_units,
 )
-from tests.fixtures.alfasim.from_export.datasets import alfasim_file_excel_results
+from tests.multi_transient_reader.fixtures.alfasim.from_export.datasets import (
+    alfasim_file_excel_results,
+)
 
 
 def test_create_trend_result_dictionary(alfasim_file_excel_results):

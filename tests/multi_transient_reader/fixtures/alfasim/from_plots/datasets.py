@@ -3,7 +3,9 @@ import random
 
 import pytest
 
-from src.xls_reader.alfasim.from_plots.xls_reader import merge_tabs
+from alfasim.from_plots.xls_reader import (
+    merge_tabs,
+)
 
 
 def shuffle_dataframe(dataframe):
@@ -56,7 +58,7 @@ def alfasim_file_single_edge_homogeneous_data():
         "..",
         "..",
         "..",
-        "examples",
+        "data",
         "alfasim",
         "from_plots",
         "alfasim_file_single_edge_homogeneous_data.xlsx",
@@ -180,7 +182,7 @@ def alfasim_file_single_edge_homogeneous_data_and_parametric_run():
         "..",
         "..",
         "..",
-        "examples",
+        "data",
         "alfasim",
         "from_plots",
         "alfasim_file_single_edge_homogeneous_data_and_parametric_run.xlsx",
@@ -250,7 +252,7 @@ def alfasim_file_two_edges_homogeneous_data():
         "..",
         "..",
         "..",
-        "examples",
+        "data",
         "alfasim",
         "from_plots",
         "alfasim_file_two_edges_homogeneous_data.xlsx",
@@ -304,7 +306,7 @@ def alfasim_file_two_edges_homogeneous_data_and_parametric_run():
         "..",
         "..",
         "..",
-        "examples",
+        "data",
         "alfasim",
         "from_plots",
         "alfasim_file_two_edges_homogeneous_data_and_parametric_run.xlsx",
@@ -410,7 +412,7 @@ def alfasim_file_two_edges_heterogeneous_data():
         "..",
         "..",
         "..",
-        "examples",
+        "data",
         "alfasim",
         "from_plots",
         "alfasim_file_two_edges_heterogeneous_data.xlsx",
@@ -472,7 +474,7 @@ def alfasim_file_two_edges_heterogeneous_data_and_parametric_run():
         "..",
         "..",
         "..",
-        "examples",
+        "data",
         "alfasim",
         "from_plots",
         "alfasim_file_two_edges_heterogeneous_data_and_parametric_run.xlsx",
